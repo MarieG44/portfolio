@@ -1,377 +1,267 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Name - Portfolio</title>
-  <meta name="description" content="Portfolio of Name - experience, projects, and skills." />
-  <meta name="color-scheme" content="light dark" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Name - Portfolio</title>
+<meta name="color-scheme" content="light dark" />
 
-  <style>
-    /* ===================== THEME ===================== */
-    :root{
-      --bg:#123456;
-      --panel:#2b5475;
-      --text:#f0f0f0;
-      --muted:#c5c5c5;
-      --ring:#2a4466;
-      --shadow:0 10px 30px rgba(0,0,0,.25);
+<style>
+/* ===================== THEME ===================== */
+:root{
+  --bg:#123456;
+  --panel:#2b5475;
+  --text:#f0f0f0;
+  --muted:#c5c5c5;
+  --ring:#2a4466;
+  --shadow:0 10px 30px rgba(0,0,0,.25);
 
-      /* Hero headline size (desktop max) */
-      --hero-size:36px;
-    }
+  /* CONTROL HERO SIZE HERE */
+  --hero-size:34px;
+}
 
-    :root.light{
-      --bg:#d5f5d1;
-      --panel:#eafae8;
-      --text:#1f1f1f;
-      --muted:#898989;
-      --ring:#2a4466;
-      --shadow:0 10px 30px rgba(60,80,140,.08);
+:root.light{
+  --bg:#d5f5d1;
+  --panel:#eafae8;
+  --text:#1f1f1f;
+  --muted:#898989;
+  --ring:#2a4466;
+  --shadow:0 10px 30px rgba(60,80,140,.08);
+}
 
-      --hero-size:34px;
-    }
+/* ===================== BASE ===================== */
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font:16px/1.6 system-ui, sans-serif;
+  background:var(--bg);
+  color:var(--text);
 
-    /* ===================== BASE ===================== */
-    *{box-sizing:border-box}
-    html,body{height:100%}
+  /* space for fixed header */
+  padding-top:80px;
+}
 
-    body{
-      margin:0;
-      font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background:var(--bg);
-      color:var(--text);
+.container{max-width:1100px;margin:0 auto;padding:24px}
+a{color:var(--text);text-decoration:none}
 
-      /* Offset for fixed header */
-      padding-top:72px;
-    }
+/* ===================== HEADER ===================== */
+header{
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+  backdrop-filter:saturate(160%) blur(8px);
+  background:color-mix(in oklab, var(--bg) 85%, transparent);
+  border-bottom:1px solid color-mix(in oklab, var(--ring) 50%, transparent);
+}
 
-    @media (max-width:600px){
-      body{ padding-top:84px; }
-    }
+nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
 
-    .container{max-width:1100px; margin:0 auto; padding:24px}
-    a{color:var(--text); text-decoration:none}
-    a:hover{text-decoration:underline}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:700;
+}
 
-    /* ===================== BUTTONS ===================== */
-    .btn{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid var(--ring);
-      background:var(--panel);
-      color:var(--text);
-      font-size:1rem;
-      line-height:1.6;
-      box-shadow:var(--shadow);
-    }
+.logo{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  background:var(--panel);
+  border:1px solid var(--ring);
+}
 
-    .btn--ghost{ background:var(--panel) }
+.nav-links{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
 
-    .btn--quiet{
-      background:transparent;
-      border:1px solid var(--ring);
-      color:var(--muted);
-      box-shadow:none;
-      padding:6px 10px;
-      border-radius:10px;
-      font-size:1rem;
-      line-height:1.6;
-    }
+.btn{
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid var(--ring);
+  background:var(--panel);
+  box-shadow:none;
+}
 
-    .btn--quiet:hover{
-      background:color-mix(in oklab, var(--panel) 85%, transparent);
-      text-decoration:none;
-    }
+.toggle{
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid var(--ring);
+  background:var(--panel);
+  font-weight:700;
+}
 
-    /* ===================== HEADER ===================== */
-    header{
-      position:fixed;
-      top:0; left:0;
-      width:100%;
-      z-index:1000;
-      backdrop-filter:saturate(160%) blur(8px);
-      background:color-mix(in oklab, var(--bg) 85%, transparent);
-      border-bottom:1px solid color-mix(in oklab, var(--ring) 50%, transparent);
-    }
+/* ===================== HERO ===================== */
+.top{
+  padding:40px 0;
+  display:grid;
+  gap:18px;
+}
 
-    nav.nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:16px;
-    }
+h1{
+  margin:0;
+  line-height:1.15;
+  font-size:clamp(26px, 4vw, var(--hero-size));
+}
 
-    .nav-left, .nav-center, .nav-right{
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
+.contact{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
 
-    .nav-center{
-      margin-left:auto;
-      flex-wrap:wrap;
-    }
+.pill{
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid var(--ring);
+  color:var(--muted);
+}
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:700;
-    }
+/* ===================== SECTIONS ===================== */
+.section{padding:16px 0}
+.card{
+  background:var(--panel);
+  border:1px solid var(--ring);
+  border-radius:16px;
+  padding:16px;
+  box-shadow:var(--shadow);
+}
 
-    .logo{
-      width:34px;
-      height:34px;
-      border-radius:10px;
-      display:grid;
-      place-items:center;
-      background:var(--panel);
-      border:1px solid var(--ring);
-    }
+.badges{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
 
-    .nav-center .btn{ box-shadow:none }
+.badge{
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px dashed var(--ring);
+  color:var(--muted);
+}
 
-    .toggle{
-      border:1px solid var(--ring);
-      border-radius:999px;
-      padding:8px 12px;
-      background:var(--panel);
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-weight:700;
-    }
-
-    /* ===================== TOP ===================== */
-    .top{ display:grid; gap:18px; padding:40px 0 }
-
-    h1{
-      font-size:clamp(26px, 4vw, var(--hero-size));
-      margin:0;
-      line-height:1.15;
-    }
-
-    .top .contact{ display:flex; flex-wrap:wrap; gap:10px }
-
-    .pill{
-      border:1px solid var(--ring);
-      border-radius:999px;
-      padding:6px 10px;
-      color:var(--muted);
-      background:color-mix(in oklab, var(--panel) 70%, transparent);
-    }
-
-    .summary{ display:grid; gap:6px }
-
-    .elevator{
-      font-size:1.05rem;
-      color:var(--muted);
-    }
-
-    /* ===================== SECTIONS ===================== */
-    .section{ padding:14px 0 8px }
-    .section h2{ margin:0 0 8px 0 }
-
-    .card{
-      background:var(--panel);
-      border:1px solid var(--ring);
-      border-radius:16px;
-      padding:16px;
-      box-shadow:var(--shadow);
-    }
-
-    footer{
-      padding:28px 0;
-      color:var(--muted);
-      text-align:center;
-    }
-
-    /* ===================== TIMELINE ===================== */
-    .timeline{ position:relative; margin:24px 0 }
-
-    .timeline::before{
-      content:"";
-      position:absolute;
-      top:0; bottom:0;
-      left:50%;
-      width:2px;
-      background:linear-gradient(180deg, transparent, var(--ring), transparent);
-    }
-
-    .item{
-      position:relative;
-      width:50%;
-      padding:14px;
-    }
-
-    .item[data-side="left"]{ left:0; padding-right:28px }
-    .item[data-side="right"]{ left:50%; padding-left:28px }
-
-    .item .meta{
-      color:var(--muted);
-      font-weight:600;
-      margin-bottom:8px;
-    }
-
-    .item ul{ margin:8px 0 0 18px }
-
-    .dot{
-      position:absolute;
-      top:22px;
-      left:50%;
-      transform:translate(-50%,-50%);
-      width:46px;
-      height:46px;
-      border-radius:999px;
-      background:var(--panel);
-      border:2px solid var(--ring);
-      display:grid;
-      place-items:center;
-      box-shadow:var(--shadow);
-    }
-
-    .dot img{
-      width:22px;
-      height:22px;
-      object-fit:contain;
-    }
-
-    .item .card{ padding-top:22px }
-
-    @media (max-width:900px){
-      .timeline::before{ left:20px }
-      .item{
-        width:100%;
-        left:0 !important;
-        padding:14px 14px 14px 56px;
-      }
-      .dot{ left:20px }
-    }
-
-    /* ===================== PROJECTS ===================== */
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
-      gap:16px;
-    }
-
-    .card img{
-      width:100%;
-      aspect-ratio:16/9;
-      object-fit:cover;
-      border-radius:10px;
-      margin-bottom:10px;
-    }
-
-    /* ===================== BADGES ===================== */
-    .badges{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:8px;
-    }
-
-    .badge{
-      font-size:1rem;
-      line-height:1.6;
-      padding:6px 10px;
-      border-radius:999px;
-      border:1px dashed var(--ring);
-      color:var(--muted);
-      background:transparent;
-    }
-
-    .proj-meta{
-      margin:6px 0 8px 0;
-      color:var(--muted);
-      font-weight:600;
-    }
-
-    .proj-meta strong{
-      color:inherit;
-      font-weight:700;
-    }
-
-    /* ===================== SKILLS & CONTACT ===================== */
-    #skills .card, #skills .card *{ color:var(--muted) }
-    #contact .card, #contact .card *{ color:var(--muted) }
-    #contact .card strong{ font-weight:600 }
-  </style>
+/* ===================== FOOTER ===================== */
+footer{
+  padding:28px 0;
+  text-align:center;
+  color:var(--muted);
+}
+</style>
 </head>
 
 <body>
-  <header>
-    <div class="container">
-      <nav class="nav" aria-label="Primary">
-        <div class="nav-left">
-          <a class="brand" href="#top"><span class="logo">Y</span> Your Name</a>
-        </div>
 
-        <div class="nav-center">
-          <a class="btn btn--ghost" href="#experience">Experience</a>
-          <a class="btn btn--ghost" href="#projects">Projects</a>
-          <a class="btn btn--ghost" href="#skills">Skills</a>
-          <a class="btn btn--ghost" href="#contact">Contact</a>
-        </div>
+<header>
+  <div class="container">
+    <nav>
+      <a class="brand" href="#top">
+        <span class="logo">Y</span> Your Name
+      </a>
 
-        <div class="nav-right">
-          <button id="themeToggle" class="toggle">
-            <span id="themeIcon">☀️</span>
-            <span id="themeLabel">Light Mode</span>
-          </button>
-        </div>
-      </nav>
+      <div class="nav-links">
+        <a class="btn" href="#experience">Experience</a>
+        <a class="btn" href="#projects">Projects</a>
+        <a class="btn" href="#skills">Skills</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+
+      <button id="themeToggle" class="toggle">
+        <span id="themeIcon">☀️</span>
+        <span id="themeLabel">Light Mode</span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="top" class="container">
+
+<section class="top">
+  <h1>Software Engineer & Product-minded Builder</h1>
+
+  <div class="contact">
+    <span class="pill">📍 City (open to remote)</span>
+    <span class="pill">✉️ you@example.com</span>
+    <span class="pill">🔗 LinkedIn</span>
+    <span class="pill">💻 GitHub</span>
+  </div>
+
+  <p>Previously: student leader running events & mentorship. Proven record of turning messy ideas into useful tools.</p>
+</section>
+
+<section id="experience" class="section">
+  <h2>Professional Experience</h2>
+  <div class="card">
+    <h3>Software Engineer</h3>
+    <p class="badge">Python • React • SQL</p>
+  </div>
+</section>
+
+<section id="projects" class="section">
+  <h2>Projects</h2>
+  <div class="card">Project content here</div>
+</section>
+
+<section id="skills" class="section">
+  <h2>Skills</h2>
+  <div class="card">
+    <div class="badges">
+      <span class="badge">Python</span>
+      <span class="badge">JavaScript</span>
+      <span class="badge">React</span>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main id="top" class="container">
-    <!-- CONTENT UNCHANGED -->
-  </main>
+<section id="contact" class="section">
+  <h2>Contact</h2>
+  <div class="card">
+    you@example.com
+  </div>
+</section>
 
-  <footer>
-    <div class="container">
-      <small>© <span id="year"></span> Your Name</small>
-    </div>
-  </footer>
+</main>
 
-  <script>
-    const root = document.documentElement;
-    const toggleBtn = document.getElementById('themeToggle');
-    const icon = document.getElementById('themeIcon');
-    const label = document.getElementById('themeLabel');
+<footer>
+  © <span id="year"></span> Your Name
+</footer>
 
-    function applyTheme(mode){
-      if(mode === 'light'){
-        root.classList.add('light');
-        icon.textContent = '☀️';
-        label.textContent = 'Light Mode';
-        toggleBtn.setAttribute('aria-pressed','true');
-      } else {
-        root.classList.remove('light');
-        icon.textContent = '🌙';
-        label.textContent = 'Dark Mode';
-        toggleBtn.setAttribute('aria-pressed','false');
-      }
-      localStorage.setItem('theme', mode);
-    }
+<script>
+const root = document.documentElement;
+const toggle = document.getElementById("themeToggle");
+const icon = document.getElementById("themeIcon");
+const label = document.getElementById("themeLabel");
 
-    /* Light mode default */
-    const saved = localStorage.getItem('theme');
-    applyTheme(saved || 'light');
+function applyTheme(mode){
+  if(mode==="light"){
+    root.classList.add("light");
+    icon.textContent="☀️";
+    label.textContent="Light Mode";
+  } else {
+    root.classList.remove("light");
+    icon.textContent="🌙";
+    label.textContent="Dark Mode";
+  }
+  localStorage.setItem("theme", mode);
+}
 
-    toggleBtn.addEventListener('click', () => {
-      applyTheme(root.classList.contains('light') ? 'dark' : 'light');
-    });
+/* light mode default */
+applyTheme(localStorage.getItem("theme") || "light");
 
-    document.getElementById('year').textContent = new Date().getFullYear();
+toggle.onclick = () =>
+  applyTheme(root.classList.contains("light") ? "dark" : "light");
 
-    document.querySelectorAll('.timeline').forEach(tl=>{
-      [...tl.querySelectorAll('.item')].forEach((it,i)=>{
-        if(!it.dataset.side) it.dataset.side = i % 2 ? 'right' : 'left';
-      });
-    });
-  </script>
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
