@@ -16,7 +16,7 @@
       --ring:#2a4466;
       --shadow:0 10px 30px rgba(0,0,0,.25);
 
-      /* Hero title size: tweak this to control
+      /* Hero title size: change this to control
          "Software Engineer & Product-minded Builder" */
       --hero-size:clamp(24px, 4vw, 34px);
     }
@@ -60,10 +60,7 @@
 
     /* ===== Header (Left / Center / Right) ===== */
     header{
-      position:fixed;          /* keep banner attached to top */
-      top:0;
-      left:0;
-      right:0;
+      position:relative;       /* no sticky / fixed: lives at top of page */
       z-index:10;
       backdrop-filter:saturate(160%) blur(8px);
       background:color-mix(in oklab, var(--bg) 85%, transparent);
@@ -114,7 +111,7 @@
     .pill{border:1px solid var(--ring); border-radius:999px; padding:6px 10px; color:var(--muted); background:color-mix(in oklab, var(--panel) 70%, transparent)}
     .summary{display:grid; gap:6px}
     h1{
-      font-size:var(--hero-size);  /* controlled via CSS variable */
+      font-size:var(--hero-size);  /* controlled via CSS variable above */
       margin:0;
       line-height:1.1;
     }
@@ -123,7 +120,13 @@
     /* ===== Sections / Cards ===== */
     .section{padding:14px 0 8px}
     .section h2{margin:0 0 8px 0}
-    .card{background:var(--panel); border:1px solid var(--ring); border-radius:16px; padding:16px; box-shadow:var(--shadow)}
+    .card{
+      background:var(--panel);
+      border:1px solid var(--ring);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:var(--shadow);
+    }
     footer{padding:28px 0; color:var(--muted); text-align:center}
 
     /* ===== Timeline ===== */
@@ -135,9 +138,26 @@
     .item ul{margin:8px 0 0 18px}
     .item[data-side="left"]{left:0; padding-right:28px}
     .item[data-side="right"]{left:50%; padding-left:28px}
-    .dot{position:absolute; top:22px; left:50%; transform:translate(-50%,-50%); background:var(--panel); border:2px solid var(--ring); width:46px; height:46px; border-radius:999px; display:grid; place-items:center; box-shadow:var(--shadow)}
+    .dot{
+      position:absolute;
+      top:22px;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background:var(--panel);
+      border:2px solid var(--ring);
+      width:46px;
+      height:46px;
+      border-radius:999px;
+      display:grid;
+      place-items:center;
+      box-shadow:var(--shadow);
+    }
     .dot img{width:22px; height:22px}
-    .item .card{background:var(--panel)}
+    /* Add margin so logo doesn't overlap title */
+    .item .card{
+      background:var(--panel);
+      margin-top:26px;  /* pushes card (and title) down from the logo */
+    }
 
     @media (max-width: 900px){
       .timeline::before{left:20px}
@@ -428,21 +448,6 @@
       const items=[...tl.querySelectorAll('.item')];
       items.forEach((it,i)=>{ if(!it.dataset.side){ it.dataset.side = i%2? 'right':'left'; } });
     });
-
-    // Adjust main padding so fixed header never covers content
-    const headerEl = document.querySelector('header');
-    const mainEl = document.querySelector('main');
-
-    function adjustMainOffset(){
-      if(!headerEl || !mainEl) return;
-      const headerHeight = headerEl.offsetHeight;
-      // base 24px padding from .container + header height
-      mainEl.style.paddingTop = (headerHeight + 24) + 'px';
-    }
-
-    window.addEventListener('load', adjustMainOffset);
-    window.addEventListener('resize', adjustMainOffset);
   </script>
 </body>
 </html>
-
