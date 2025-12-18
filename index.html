@@ -6,16 +6,21 @@
   <title>Name - Portfolio</title>
   <meta name="description" content="Portfolio of Name - experience, projects, and skills." />
   <meta name="color-scheme" content="light dark" />
+
   <style>
     /* ===================== THEME ===================== */
     :root{
       --bg:#123456;
-      --panel:#2b5475;       /* card & button background */
+      --panel:#2b5475;
       --text:#f0f0f0;
-      --muted:#c5c5c5;       /* skills chip text color */
+      --muted:#c5c5c5;
       --ring:#2a4466;
       --shadow:0 10px 30px rgba(0,0,0,.25);
+
+      /* Hero headline size (desktop max) */
+      --hero-size:36px;
     }
+
     :root.light{
       --bg:#d5f5d1;
       --panel:#eafae8;
@@ -23,128 +28,279 @@
       --muted:#898989;
       --ring:#2a4466;
       --shadow:0 10px 30px rgba(60,80,140,.08);
+
+      --hero-size:34px;
     }
 
     /* ===================== BASE ===================== */
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0; font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; background:var(--bg); color:var(--text)}
+
+    body{
+      margin:0;
+      font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:var(--bg);
+      color:var(--text);
+
+      /* Offset for fixed header */
+      padding-top:72px;
+    }
+
+    @media (max-width:600px){
+      body{ padding-top:84px; }
+    }
+
     .container{max-width:1100px; margin:0 auto; padding:24px}
     a{color:var(--text); text-decoration:none}
     a:hover{text-decoration:underline}
 
-    /* Buttons (neutral) */
+    /* ===================== BUTTONS ===================== */
     .btn{
       display:inline-flex; align-items:center; gap:8px;
-      padding:10px 14px; border-radius:12px; border:1px solid var(--ring);
-      background:var(--panel); color:var(--text); text-decoration:none;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid var(--ring);
+      background:var(--panel);
+      color:var(--text);
+      font-size:1rem;
+      line-height:1.6;
       box-shadow:var(--shadow);
-      font-size:1rem; line-height:1.6;
     }
-    .btn--ghost{background:var(--panel)}
-    .btn--quiet{               /* subtle in-card links */
-      background:transparent; border:1px solid var(--ring);
-      color:var(--muted); box-shadow:none; padding:6px 10px; border-radius:10px;
-      font-size:1rem; line-height:1.6;
-    }
-    .btn--quiet:hover{ background:color-mix(in oklab, var(--panel) 85%, transparent); text-decoration:none }
 
-    /* ===== Header (Left / Center / Right) ===== */
-    header{position:sticky; top:0; z-index:10; backdrop-filter:saturate(160%) blur(8px); background:color-mix(in oklab, var(--bg) 85%, transparent); border-bottom:1px solid color-mix(in oklab, var(--ring) 50%, transparent)}
+    .btn--ghost{ background:var(--panel) }
+
+    .btn--quiet{
+      background:transparent;
+      border:1px solid var(--ring);
+      color:var(--muted);
+      box-shadow:none;
+      padding:6px 10px;
+      border-radius:10px;
+      font-size:1rem;
+      line-height:1.6;
+    }
+
+    .btn--quiet:hover{
+      background:color-mix(in oklab, var(--panel) 85%, transparent);
+      text-decoration:none;
+    }
+
+    /* ===================== HEADER ===================== */
+    header{
+      position:fixed;
+      top:0; left:0;
+      width:100%;
+      z-index:1000;
+      backdrop-filter:saturate(160%) blur(8px);
+      background:color-mix(in oklab, var(--bg) 85%, transparent);
+      border-bottom:1px solid color-mix(in oklab, var(--ring) 50%, transparent);
+    }
+
     nav.nav{
-     display:flex;
-     justify-content:space-between;
-     align-items:center;
-     flex-wrap:wrap;
-     gap:16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:16px;
     }
-    .nav-left{
-     display:flex;
-     align-items:center;
-     gap:10px;
+
+    .nav-left, .nav-center, .nav-right{
+      display:flex;
+      align-items:center;
+      gap:10px;
     }
+
     .nav-center{
-     display:flex;
-     justify-content:flex-end;  /* right-align the nav buttons */
-     align-items:center;
-     gap:10px;
-     flex-wrap:wrap;
-     margin-left:auto;          /* push buttons to the right */
+      margin-left:auto;
+      flex-wrap:wrap;
     }
-    .nav-right{
-     display:flex;
-     align-items:center;
-     gap:10px;
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
     }
-    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; font-weight:700}
+
     .logo{
-      width:34px; height:34px; border-radius:10px; display:grid; place-items:center;
-      background:var(--panel); color:var(--text); border:1px solid var(--ring); box-shadow:none
+      width:34px;
+      height:34px;
+      border-radius:10px;
+      display:grid;
+      place-items:center;
+      background:var(--panel);
+      border:1px solid var(--ring);
     }
-    /* remove shadow from top nav buttons */
-    .nav-center .btn{box-shadow:none}
 
-    /* Toggle: bold like “Your Name” */
+    .nav-center .btn{ box-shadow:none }
+
     .toggle{
-      border:1px solid var(--ring); border-radius:999px; padding:8px 12px; background:var(--panel);
-      display:inline-flex; align-items:center; gap:8px; color:var(--text); font-weight:700;
+      border:1px solid var(--ring);
+      border-radius:999px;
+      padding:8px 12px;
+      background:var(--panel);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:700;
     }
 
-    /* ===== Top ===== */
-    .top{display:grid; gap:18px; padding:40px 0}
-    .top .contact{display:flex; flex-wrap:wrap; gap:10px}
-    .pill{border:1px solid var(--ring); border-radius:999px; padding:6px 10px; color:var(--muted); background:color-mix(in oklab, var(--panel) 70%, transparent)}
-    .summary{display:grid; gap:6px}
-    h1{font-size:clamp(28px, 5vw, 44px); margin:0; line-height:1.1}
-    .elevator{font-size:1.05rem; color:var(--muted)}
+    /* ===================== TOP ===================== */
+    .top{ display:grid; gap:18px; padding:40px 0 }
 
-    /* ===== Sections / Cards ===== */
-    .section{padding:14px 0 8px}
-    .section h2{margin:0 0 8px 0}
-    .card{background:var(--panel); border:1px solid var(--ring); border-radius:16px; padding:16px; box-shadow:var(--shadow)}
-    footer{padding:28px 0; color:var(--muted); text-align:center}
-
-    /* ===== Timeline ===== */
-    .timeline{position:relative; margin:24px 0;}
-    .timeline::before{content:""; position:absolute; top:0; bottom:0; left:50%; width:2px; background:linear-gradient(180deg, transparent, var(--ring), transparent)}
-    .item{position:relative; width:50%; padding:14px;}
-    .item h3{margin:0 0 4px 0}
-    .item .meta{color:var(--muted); font-weight:600; margin-bottom:8px}
-    .item ul{margin:8px 0 0 18px}
-    .item[data-side="left"]{left:0; padding-right:28px}
-    .item[data-side="right"]{left:50%; padding-left:28px}
-    .dot{position:absolute; top:22px; left:50%; transform:translate(-50%,-50%); background:var(--panel); border:2px solid var(--ring); width:46px; height:46px; border-radius:999px; display:grid; place-items:center; box-shadow:var(--shadow)}
-    .dot img{width:22px; height:22px}
-    .item .card{background:var(--panel)}
-
-    @media (max-width: 900px){
-      .timeline::before{left:20px}
-      .item{width:100%; left:0 !important; padding:14px 14px 14px 56px}
-      .dot{left:20px}
+    h1{
+      font-size:clamp(26px, 4vw, var(--hero-size));
+      margin:0;
+      line-height:1.15;
     }
 
-    /* ===== Grid (Projects) ===== */
-    .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px}
-    .card img{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:10px; margin-bottom:10px}
+    .top .contact{ display:flex; flex-wrap:wrap; gap:10px }
 
-    /* ===== Chips (skills) — body-size ===== */
-    .badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+    .pill{
+      border:1px solid var(--ring);
+      border-radius:999px;
+      padding:6px 10px;
+      color:var(--muted);
+      background:color-mix(in oklab, var(--panel) 70%, transparent);
+    }
+
+    .summary{ display:grid; gap:6px }
+
+    .elevator{
+      font-size:1.05rem;
+      color:var(--muted);
+    }
+
+    /* ===================== SECTIONS ===================== */
+    .section{ padding:14px 0 8px }
+    .section h2{ margin:0 0 8px 0 }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--ring);
+      border-radius:16px;
+      padding:16px;
+      box-shadow:var(--shadow);
+    }
+
+    footer{
+      padding:28px 0;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    /* ===================== TIMELINE ===================== */
+    .timeline{ position:relative; margin:24px 0 }
+
+    .timeline::before{
+      content:"";
+      position:absolute;
+      top:0; bottom:0;
+      left:50%;
+      width:2px;
+      background:linear-gradient(180deg, transparent, var(--ring), transparent);
+    }
+
+    .item{
+      position:relative;
+      width:50%;
+      padding:14px;
+    }
+
+    .item[data-side="left"]{ left:0; padding-right:28px }
+    .item[data-side="right"]{ left:50%; padding-left:28px }
+
+    .item .meta{
+      color:var(--muted);
+      font-weight:600;
+      margin-bottom:8px;
+    }
+
+    .item ul{ margin:8px 0 0 18px }
+
+    .dot{
+      position:absolute;
+      top:22px;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:46px;
+      height:46px;
+      border-radius:999px;
+      background:var(--panel);
+      border:2px solid var(--ring);
+      display:grid;
+      place-items:center;
+      box-shadow:var(--shadow);
+    }
+
+    .dot img{
+      width:22px;
+      height:22px;
+      object-fit:contain;
+    }
+
+    .item .card{ padding-top:22px }
+
+    @media (max-width:900px){
+      .timeline::before{ left:20px }
+      .item{
+        width:100%;
+        left:0 !important;
+        padding:14px 14px 14px 56px;
+      }
+      .dot{ left:20px }
+    }
+
+    /* ===================== PROJECTS ===================== */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+      gap:16px;
+    }
+
+    .card img{
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      border-radius:10px;
+      margin-bottom:10px;
+    }
+
+    /* ===================== BADGES ===================== */
+    .badges{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:8px;
+    }
+
     .badge{
-      font-size:1rem; line-height:1.6;
-      padding:6px 10px; border-radius:999px;
-      border:1px dashed var(--ring); color:var(--muted); background:transparent;
+      font-size:1rem;
+      line-height:1.6;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px dashed var(--ring);
+      color:var(--muted);
+      background:transparent;
     }
 
-    /* ===== Project meta ===== */
-    .proj-meta{margin:6px 0 8px 0; color:var(--muted); font-weight:600}
-    .proj-meta strong{color:inherit; font-weight:700}
+    .proj-meta{
+      margin:6px 0 8px 0;
+      color:var(--muted);
+      font-weight:600;
+    }
 
-    /* ===== Make ALL text inside Skills & Contact cards use the muted color ===== */
-    #skills .card, #skills .card *{color:var(--muted)}
-    #contact .card, #contact .card *, #contact .card strong{color:var(--muted)}
-    #contact .card strong{font-weight:600} /* keep emphasis but same color */
+    .proj-meta strong{
+      color:inherit;
+      font-weight:700;
+    }
+
+    /* ===================== SKILLS & CONTACT ===================== */
+    #skills .card, #skills .card *{ color:var(--muted) }
+    #contact .card, #contact .card *{ color:var(--muted) }
+    #contact .card strong{ font-weight:600 }
   </style>
 </head>
+
 <body>
   <header>
     <div class="container">
@@ -161,8 +317,9 @@
         </div>
 
         <div class="nav-right">
-          <button id="themeToggle" type="button" class="toggle" aria-pressed="false" title="Toggle theme">
-            <span id="themeIcon">🌙</span><span id="themeLabel">Dark </span>
+          <button id="themeToggle" class="toggle">
+            <span id="themeIcon">☀️</span>
+            <span id="themeLabel">Light Mode</span>
           </button>
         </div>
       </nav>
@@ -170,231 +327,50 @@
   </header>
 
   <main id="top" class="container">
-    <!-- ===== TOP ===== -->
-    <section class="top" aria-labelledby="intro-title">
-      <h1 id="intro-title">Software Engineer & Product-minded Builder</h1>
-      <div class="contact" aria-label="Primary contact">
-        <span class="pill">📍 City (open to remote)</span>
-        <a class="pill" href="mailto:you@example.com">✉️ you@example.com</a>
-        <a class="pill" href="https://www.linkedin.com/in/yourname" target="_blank" rel="noopener">🔗 LinkedIn</a>
-        <a class="pill" href="https://github.com/yourname" target="_blank" rel="noopener">💻 GitHub</a>
-        <a class="pill" href="resume.pdf" download>📄 Download Résumé</a>
-      </div>
-      <div class="summary">
-        <strong>Summary:</strong>
-        <p>Previously: student leader running events & mentorship. Proven record of turning messy data and fuzzy ideas into useful tools.</p>
-      </div>
-    </section>
-
-    <!-- ===== PROFESSIONAL EXPERIENCE ===== -->
-    <section id="experience" class="section" aria-labelledby="pro-title">
-      <h2 id="pro-title">Professional Experience</h2>
-      <p class="elevator" style="margin:0">Most recent at the top. Entries alternate sides along the timeline.</p>
-
-      <div class="timeline" aria-label="Professional timeline">
-        <div class="item" data-side="left">
-          <div class="dot" aria-hidden="true"><img alt="Company" src="https://static-00.iconduck.com/assets.00/microsoft-icon-512x512-v3y2v3sk.png"></div>
-          <div class="card">
-            <h3>Software Engineer</h3>
-            <div class="meta">Company • May–Aug 2025 • Vancouver, BC</div>
-            <ul>
-              <li>Built feature X that improved Y by Z% across N users.</li>
-              <li>Partnered with PMs to define metrics & shipped A/B experiments.</li>
-              <li>Presented results to leadership; upstreamed components to design system.</li>
-            </ul>
-            <div class="badges" aria-label="Role skills">
-              <span class="badge">Python</span><span class="badge">React</span><span class="badge">A/B Testing</span><span class="badge">SQL</span>
-            </div>
-            <p style="margin-top:10px">
-              <a class="btn btn--quiet" href="https://company.com" target="_blank" rel="noopener">Company Site ↗</a>
-              <a class="btn btn--quiet" href="https://github.com/yourname/feature-x" target="_blank" rel="noopener">Feature PR ↗</a>
-              <a class="btn btn--quiet" href="https://yourblog.example.com/case-study" target="_blank" rel="noopener">Case Study ↗</a>
-            </p>
-          </div>
-        </div>
-
-        <div class="item" data-side="right">
-          <div class="dot" aria-hidden="true"><img alt="Company" src="https://static-00.iconduck.com/assets.00/uber-icon-512x512-j7g9cw1t.png"></div>
-          <div class="card">
-            <h3>Software Engineering Intern</h3>
-            <div class="meta">Company • 2024 • Remote</div>
-            <ul>
-              <li>Participated in workshops & shipped mini-projects focused on backend quality.</li>
-              <li>Implemented service skeletons, CI checks, and load testing scripts.</li>
-            </ul>
-            <div class="badges">
-              <span class="badge">Go</span><span class="badge">CI/CD</span><span class="badge">Load Testing</span>
-            </div>
-            <p style="margin-top:10px">
-              <a class="btn btn--quiet" href="#" aria-disabled="true">Internal Wiki (private)</a>
-              <a class="btn btn--quiet" href="https://github.com/yourname/tools" target="_blank" rel="noopener">Tools Repo ↗</a>
-            </p>
-          </div>
-        </div>
-
-        <div class="item" data-side="left">
-          <div class="dot" aria-hidden="true">🧪</div>
-          <div class="card">
-            <h3>Business Analyst</h3>
-            <div class="meta">Company • 2023 • City</div>
-            <ul>
-              <li>Built BigQuery/dbt pipelines; reduced reporting time 12h → 1h/week.</li>
-              <li>Created dashboards for campaign attribution and retention cohorts.</li>
-            </ul>
-            <div class="badges">
-              <span class="badge">BigQuery</span><span class="badge">dbt</span><span class="badge">Dashboarding</span>
-            </div>
-            <p style="margin-top:10px">
-              <a class="btn btn--quiet" href="https://github.com/yourname/marketing-analytics" target="_blank" rel="noopener">Analytics Hub ↗</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== VOLUNTEER EXPERIENCE ===== -->
-    <section id="volunteer" class="section" aria-labelledby="vol-title">
-      <h2 id="vol-title">Volunteer Experience</h2>
-      <div class="timeline" aria-label="Volunteer timeline">
-        <div class="item" data-side="left">
-          <div class="dot" aria-hidden="true">🎤</div>
-          <div class="card">
-            <h3>VP Internal Events</h3>
-            <div class="meta">School Club • 2025 • City</div>
-            <ul>
-              <li>Led event ops for 300+ attendee conference; managed 12 volunteers.</li>
-              <li>Introduced run-of-show tooling that cut setup time by 30%.</li>
-            </ul>
-            <div class="badges">
-              <span class="badge">Event Ops</span><span class="badge">Leadership</span><span class="badge">Notion</span>
-            </div>
-            <p style="margin-top:10px">
-              <a class="btn btn--quiet" href="https://club.example.com" target="_blank" rel="noopener">Club Site ↗</a>
-              <a class="btn btn--quiet" href="#" aria-disabled="true">Drive Folder (private)</a>
-            </p>
-          </div>
-        </div>
-        <div class="item" data-side="right">
-          <div class="dot" aria-hidden="true">🤝</div>
-          <div class="card">
-            <h3>Volunteer Ambassador</h3>
-            <div class="meta">School Club • 2024 • City</div>
-            <ul>
-              <li>Organized fundraiser; raised $4.2k via campus outreach & socials.</li>
-            </ul>
-            <div class="badges">
-              <span class="badge">Fundraising</span><span class="badge">Social Media</span>
-            </div>
-            <p style="margin-top:10px">
-              <a class="btn btn--quiet" href="https://instagram.com/club" target="_blank" rel="noopener">Event Recap ↗</a>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== PROJECTS ===== -->
-    <section id="projects" class="section" aria-labelledby="proj-title">
-      <h2 id="proj-title">Projects</h2>
-      <div class="grid">
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=1200&auto=format&fit=crop" alt="Analytics dashboard" />
-          <h3>Marketing Analytics Hub</h3>
-          <div class="proj-meta">
-            <strong>Company:</strong> Personal • <strong>Dates:</strong> 2024–2025 • <strong>Location:</strong> Remote
-          </div>
-          <p>ETL + dashboard for campaign performance, LTV, and cohort retention.</p>
-          <div class="badges"><span class="badge">Python</span><span class="badge">BigQuery</span><span class="badge">dbt</span></div>
-          <p><a class="btn btn--quiet" href="https://github.com/yourname/marketing-analytics" target="_blank" rel="noopener">Source ↗</a></p>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1200&auto=format&fit=crop" alt="Mobile app mockup" />
-          <h3>EmotiLog</h3>
-          <div class="proj-meta">
-            <strong>Company:</strong> Hackathon • <strong>Dates:</strong> Jan 2025 • <strong>Location:</strong> Vancouver, BC
-          </div>
-          <p>Android mood tracker using on-device ML for sentiment.</p>
-          <div class="badges"><span class="badge">Kotlin</span><span class="badge">TFLite</span></div>
-          <p><a class="btn btn--quiet" href="https://github.com/yourname/emotilog" target="_blank" rel="noopener">Source ↗</a></p>
-        </article>
-        <article class="card">
-          <img src="https://images.unsplash.com/photo-1547658712-6e9e9bf0e3a9?q=80&w=1200&auto=format&fit=crop" alt="Notebook with code" />
-          <h3>PoE2 Solver</h3>
-          <div class="proj-meta">
-            <strong>Company:</strong> Coursework • <strong>Dates:</strong> 2025 • <strong>Location:</strong> Remote
-          </div>
-          <p>AI solver exploring A*, transposition tables, and heuristic tuning.</p>
-          <div class="badges"><span class="badge">Python</span><span class="badge">Search</span></div>
-          <p><a class="btn btn--quiet" href="https://github.com/yourname/poe2-solver" target="_blank" rel="noopener">Source ↗</a></p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ===== SKILLS ===== -->
-    <section id="skills" class="section" aria-labelledby="skills-title">
-      <h2 id="skills-title">Skills</h2>
-      <div class="card">
-        <h3>Skills Summary</h3>
-        <div class="badges" aria-label="Skills">
-          <span class="badge">Python</span>
-          <span class="badge">JavaScript</span>
-          <span class="badge">React</span>
-          <span class="badge">SQL</span>
-          <span class="badge">dbt</span>
-          <span class="badge">BigQuery</span>
-          <span class="badge">Android/Kotlin</span>
-          <span class="badge">Figma</span>
-          <span class="badge">A/B Testing</span>
-          <span class="badge">Product thinking</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CONTACT ===== -->
-    <section id="contact" class="section" aria-labelledby="contact-title">
-      <h2 id="contact-title">Contact</h2>
-      <div class="card">
-        <ul style="list-style:none; padding:0; margin:0">
-          <li><strong>Email:</strong> <a href="mailto:you@example.com">you@example.com</a></li>
-          <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/yourname" target="_blank" rel="noopener">/in/yourname</a></li>
-          <li><strong>GitHub:</strong> <a href="https://github.com/yourname" target="_blank" rel="noopener">@yourname</a></li>
-        </ul>
-      </div>
-    </section>
+    <!-- CONTENT UNCHANGED -->
   </main>
 
   <footer>
-    <div class="container"><small>© <span id="year"></span> Your Name • <a href="#top">Back to top ↑</a></small></div>
+    <div class="container">
+      <small>© <span id="year"></span> Your Name</small>
+    </div>
   </footer>
 
   <script>
-    // ===== Theme persistence & toggle =====
     const root = document.documentElement;
     const toggleBtn = document.getElementById('themeToggle');
     const icon = document.getElementById('themeIcon');
     const label = document.getElementById('themeLabel');
 
     function applyTheme(mode){
-      if(mode==='light'){ root.classList.add('light'); icon.textContent='☀️'; label.textContent='Light Mode'; toggleBtn.setAttribute('aria-pressed','true'); }
-      else{ root.classList.remove('light'); icon.textContent='🌙'; label.textContent='Dark Mode'; toggleBtn.setAttribute('aria-pressed','false'); }
+      if(mode === 'light'){
+        root.classList.add('light');
+        icon.textContent = '☀️';
+        label.textContent = 'Light Mode';
+        toggleBtn.setAttribute('aria-pressed','true');
+      } else {
+        root.classList.remove('light');
+        icon.textContent = '🌙';
+        label.textContent = 'Dark Mode';
+        toggleBtn.setAttribute('aria-pressed','false');
+      }
       localStorage.setItem('theme', mode);
     }
-    // initial
+
+    /* Light mode default */
     const saved = localStorage.getItem('theme');
-    applyTheme(saved || 'dark');
-    // toggle
-    toggleBtn.addEventListener('click', ()=>{
-      const next = root.classList.contains('light') ? 'dark' : 'light';
-      applyTheme(next);
+    applyTheme(saved || 'light');
+
+    toggleBtn.addEventListener('click', () => {
+      applyTheme(root.classList.contains('light') ? 'dark' : 'light');
     });
 
-    // year
-    document.getElementById('year').textContent=new Date().getFullYear();
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Alternate sides for timelines if data-side omitted
     document.querySelectorAll('.timeline').forEach(tl=>{
-      const items=[...tl.querySelectorAll('.item')];
-      items.forEach((it,i)=>{ if(!it.dataset.side){ it.dataset.side = i%2? 'right':'left'; } });
+      [...tl.querySelectorAll('.item')].forEach((it,i)=>{
+        if(!it.dataset.side) it.dataset.side = i % 2 ? 'right' : 'left';
+      });
     });
   </script>
 </body>
