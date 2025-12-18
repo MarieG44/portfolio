@@ -153,10 +153,14 @@
       box-shadow:var(--shadow);
     }
     .dot img{width:22px; height:22px}
-    /* Add margin so logo doesn't overlap title */
+
+    /* Keep card close to logo, but push content down inside the card
+       so the logo doesn’t collide with the title. */
     .item .card{
       background:var(--panel);
-      margin-top:26px;  /* pushes card (and title) down from the logo */
+    }
+    .timeline .card{
+      padding-top:40px; /* extra top padding only for timeline cards */
     }
 
     @media (max-width: 900px){
@@ -451,3 +455,4 @@
   </script>
 </body>
 </html>
+
