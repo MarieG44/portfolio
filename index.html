@@ -60,7 +60,7 @@
       background:transparent; border:1px solid var(--ring);
       color:var(--muted); box-shadow:var(--shadow); padding:6px 10px; border-radius:10px;
       font-size:1rem; line-height:1.6;
-      height:auto;               /* allow smaller quiet buttons */
+      height:auto;               /* allow smaller quiet buttons; min-height added later */
     }
     .btn--quiet:hover{
       background:color-mix(in oklab, var(--panel) 85%, transparent);
@@ -162,7 +162,7 @@
       left:0;
       right:0;
       background:var(--panel);
-      box-shadow:var(--shadow);  /* uses theme shadow (none) */
+      box-shadow:var(--shadow);
       padding:16px 24px 24px;
       display:none;
       z-index:15;
@@ -323,6 +323,15 @@
       padding:6px 10px; border-radius:999px;
       border:1px solid var(--ring);
       color:var(--muted); background:transparent;
+    }
+
+    /* === Unified chip / quiet-button height === */
+    .pill,
+    .badge,
+    .btn--quiet{
+      display:inline-flex;
+      align-items:center;
+      min-height:32px;   /* makes all chip-like elements the same height */
     }
 
     /* ===== Project meta ===== */
