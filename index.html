@@ -14,7 +14,7 @@
       --text:#f0f0f0;
       --muted:#c5c5c5;       /* skills chip text color */
       --ring:#2a4466;
-      --shadow:0 10px 30px rgba(0,0,0,.25);
+      --shadow:none;         /* no shadows in dark mode */
 
       /* Hero title size */
       --hero-size:clamp(24px, 4vw, 34px);
@@ -25,7 +25,7 @@
       --text:#1f1f1f;
       --muted:#898989;
       --ring:#2a4466;
-      --shadow:0 10px 30px rgba(60,80,140,.08);
+      --shadow:none;         /* no shadows in light mode */
     }
 
     /* ===================== BASE ===================== */
@@ -48,6 +48,7 @@
       background:var(--panel); color:var(--text); text-decoration:none;
       box-shadow:var(--shadow);
       font-size:1rem; line-height:1.6;
+      height:34px;               /* unify height with header buttons */
     }
     .btn:hover{
       text-decoration:underline;
@@ -57,8 +58,9 @@
 
     .btn--quiet{
       background:transparent; border:1px solid var(--ring);
-      color:var(--muted); box-shadow:none; padding:6px 10px; border-radius:10px;
+      color:var(--muted); box-shadow:var(--shadow); padding:6px 10px; border-radius:10px;
       font-size:1rem; line-height:1.6;
+      height:auto;               /* allow smaller quiet buttons */
     }
     .btn--quiet:hover{
       background:color-mix(in oklab, var(--panel) 85%, transparent);
@@ -111,9 +113,9 @@
     }
     .logo{
       width:34px; height:34px; border-radius:10px; display:grid; place-items:center;
-      background:var(--panel); color:var(--text); border:1px solid var(--ring); box-shadow:none;
+      background:var(--panel); color:var(--text); border:1px solid var(--ring); box-shadow:var(--shadow);
     }
-    .nav-center .btn{box-shadow:none}
+    .nav-center .btn{box-shadow:var(--shadow)}
 
     /* Toggle: rounded rectangle */
     .toggle{
@@ -127,8 +129,10 @@
       color:var(--text);
       font-weight:600;
       font-size:0.9rem;
-      box-shadow:none;
+      box-shadow:var(--shadow);
       cursor:pointer;
+      height:34px;          /* same height as logo & menu */
+      line-height:1;
     }
     .toggle:hover #themeLabel{
       text-decoration:underline;
@@ -144,7 +148,12 @@
       color:var(--text);
       cursor:pointer;
       font-size:1.2rem;
-      box-shadow:none;
+      box-shadow:var(--shadow);
+      display:none;
+      height:34px;            /* same height */
+      line-height:1;
+      align-items:center;
+      justify-content:center;
     }
 
     .mobile-menu{
@@ -153,7 +162,7 @@
       left:0;
       right:0;
       background:var(--panel);
-      box-shadow:0 10px 30px rgba(0,0,0,.45);
+      box-shadow:var(--shadow);  /* uses theme shadow (none) */
       padding:16px 24px 24px;
       display:none;
       z-index:15;
@@ -164,7 +173,7 @@
     .mobile-menu-header{
       display:flex;
       justify-content:flex-end;
-      margin-bottom:8px;
+      margin:16px 0 8px;     /* add top margin to lower the X a bit */
     }
     .mobile-menu-close{
       border:none;
@@ -199,7 +208,7 @@
     /* On small screens:
        - hide desktop nav-links
        - show hamburger
-       - make theme toggle emoji-only
+       - make theme toggle emoji-only (but keep same height)
     */
     @media (max-width:700px){
       .nav-links{
@@ -212,7 +221,7 @@
         display:none;          /* emoji only */
       }
       .toggle{
-        padding:6px;          /* tighter around emoji */
+        padding:6px 8px;       /* tighter horizontally; height stays 34px */
       }
     }
 
@@ -270,7 +279,7 @@
       border:2px solid var(--ring);
       width:46px;
       height:46px;
-      border-radius:12px;    /* square with rounded corners */
+      border-radius:12px;
       display:grid;
       place-items:center;
       box-shadow:var(--shadow);
@@ -287,9 +296,19 @@
       padding-top:40px; /* push content down so logo doesn't collide with title */
     }
 
+    /* MOBILE TIMELINE LAYOUT – make left & right items look the same */
     @media (max-width: 900px){
       .timeline::before{left:20px}
-      .item{width:100%; left:0 !important; padding:14px 14px 14px 56px}
+      .item{
+        width:100%;
+        left:0 !important;
+        padding:14px 14px 14px 56px;
+      }
+      .item[data-side="left"],
+      .item[data-side="right"]{
+        padding-left:56px;
+        padding-right:14px;
+      }
       .dot{left:20px}
     }
 
@@ -343,15 +362,15 @@
         </div>
 
         <div class="nav-right">
-          <!-- Mobile hamburger button (shown only on small screens) -->
+          <!-- Theme toggle (left) -->
+          <button id="themeToggle" type="button" class="toggle" aria-pressed="false" title="Toggle theme">
+            <span id="themeIcon">☀️</span><span id="themeLabel">Light Mode</span>
+          </button>
+
+          <!-- Mobile hamburger button (right) -->
           <button id="menuToggle" class="menu-toggle" type="button"
                   aria-label="Open navigation" aria-expanded="false">
             ☰
-          </button>
-
-          <!-- Theme toggle -->
-          <button id="themeToggle" type="button" class="toggle" aria-pressed="false" title="Toggle theme">
-            <span id="themeIcon">☀️</span><span id="themeLabel">Light Mode</span>
           </button>
         </div>
       </nav>
