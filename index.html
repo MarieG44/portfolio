@@ -272,7 +272,7 @@
     <div class="container">
       <nav class="nav" aria-label="Primary">
         <div class="nav-left">
-          <a class="brand" href="#top"><span class="logo">Y</span> Your Name</a>
+          <a class="brand" href="#top"><span class="logo">YN</span></a>
         </div>
 
         <div class="nav-center">
@@ -514,12 +514,12 @@
       if(mode==='light'){
         root.classList.add('light');
         icon.textContent='☀️';
-        label.textContent='Light Mode';
+        label.textContent='Light';
         toggleBtn.setAttribute('aria-pressed','true');
       } else {
         root.classList.remove('light');
         icon.textContent='🌙';
-        label.textContent='Dark Mode';
+        label.textContent='Dark';
         toggleBtn.setAttribute('aria-pressed','false');
       }
       localStorage.setItem('theme', mode);
