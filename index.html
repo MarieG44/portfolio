@@ -49,13 +49,21 @@
       box-shadow:var(--shadow);
       font-size:1rem; line-height:1.6;
     }
+    .btn:hover{
+      text-decoration:underline; /* show underline on hover for all main buttons */
+    }
+
     .btn--ghost{background:var(--panel)}
+
     .btn--quiet{               /* subtle in-card links */
       background:transparent; border:1px solid var(--ring);
       color:var(--muted); box-shadow:none; padding:6px 10px; border-radius:10px;
       font-size:1rem; line-height:1.6;
     }
-    .btn--quiet:hover{ background:color-mix(in oklab, var(--panel) 85%, transparent); text-decoration:none }
+    .btn--quiet:hover{
+      background:color-mix(in oklab, var(--panel) 85%, transparent);
+      text-decoration:underline; /* underline “Source ↗” etc. */
+    }
 
     /* ===== Header (Left / Center / Right) ===== */
     header{
@@ -100,7 +108,7 @@
     /* Toggle: rounded rectangle, slightly smaller than nav buttons */
     .toggle{
       border:1px solid var(--ring);
-      border-radius:10px;               /* not pill anymore */
+      border-radius:10px;
       padding:6px 12px;
       background:var(--panel);
       display:inline-flex;
@@ -110,6 +118,10 @@
       font-weight:600;
       font-size:0.9rem;
       box-shadow:none;
+      cursor:pointer;
+    }
+    .toggle:hover{
+      text-decoration:underline; /* underline “Light/Dark Mode” on hover */
     }
 
     /* ===== Top ===== */
@@ -135,6 +147,9 @@
       box-shadow:var(--shadow);
     }
     footer{padding:28px 0; color:var(--muted); text-align:center}
+    .copyright{
+      color:#000;  /* make © 2025 Your Name • black */
+    }
 
     /* ===== Timeline ===== */
     .timeline{position:relative; margin:24px 0;}
@@ -183,7 +198,7 @@
     .badge{
       font-size:1rem; line-height:1.6;
       padding:6px 10px; border-radius:999px;
-      border:1px solid var(--ring);   /* SOLID border instead of dashed */
+      border:1px solid var(--ring);   /* solid border */
       color:var(--muted); background:transparent;
     }
 
@@ -198,8 +213,8 @@
 
     /* Make "Skills Summary" look like the bold labels in Contact */
     #skills .card h3{
-      font-size:1rem;          /* same as body text */
-      font-weight:600;         /* bold like labels */
+      font-size:1rem;
+      font-weight:600;
       margin:0 0 8px 0;
     }
   </style>
@@ -265,9 +280,7 @@
               <span class="badge">Python</span><span class="badge">React</span><span class="badge">A/B Testing</span><span class="badge">SQL</span>
             </div>
             <p style="margin-top:10px">
-              <a class="btn btn--quiet" href="https://company.com" target="_blank" rel="noopener">Company Site ↗</a>
-              <a class="btn btn--quiet" href="https://github.com/yourname/feature-x" target="_blank" rel="noopener">Feature PR ↗</a>
-              <a class="btn btn--quiet" href="https://yourblog.example.com/case-study" target="_blank" rel="noopener">Case Study ↗</a>
+              <a class="btn btn--quiet" href="https://company.com" target="_blank" rel="noopener">Source ↗</a>
             </p>
           </div>
         </div>
@@ -304,7 +317,7 @@
               <span class="badge">BigQuery</span><span class="badge">dbt</span><span class="badge">Dashboarding</span>
             </div>
             <p style="margin-top:10px">
-              <a class="btn btn--quiet" href="https://github.com/yourname/marketing-analytics" target="_blank" rel="noopener">Analytics Hub ↗</a>
+              <a class="btn btn--quiet" href="https://github.com/yourname/marketing-analytics" target="_blank" rel="noopener">Source ↗</a>
             </p>
           </div>
         </div>
@@ -328,8 +341,7 @@
               <span class="badge">Event Ops</span><span class="badge">Leadership</span><span class="badge">Notion</span>
             </div>
             <p style="margin-top:10px">
-              <a class="btn btn--quiet" href="https://club.example.com" target="_blank" rel="noopener">Club Site ↗</a>
-              <a class="btn btn--quiet" href="#" aria-disabled="true">Drive Folder (private)</a>
+              <a class="btn btn--quiet" href="https://club.example.com" target="_blank" rel="noopener">Source ↗</a>
             </p>
           </div>
         </div>
@@ -345,7 +357,7 @@
               <span class="badge">Fundraising</span><span class="badge">Social Media</span>
             </div>
             <p style="margin-top:10px">
-              <a class="btn btn--quiet" href="https://instagram.com/club" target="_blank" rel="noopener">Event Recap ↗</a>
+              <a class="btn btn--quiet" href="https://instagram.com/club" target="_blank" rel="noopener">Source ↗</a>
             </p>
           </div>
         </div>
@@ -423,7 +435,12 @@
   </main>
 
   <footer>
-    <div class="container"><small>© <span id="year"></span> Your Name • <a href="#top">Back to top ↑</a></small></div>
+    <div class="container">
+      <small>
+        <span class="copyright">© <span id="year"></span> Your Name • </span>
+        <a href="#top">Back to top ↑</a>
+      </small>
+    </div>
   </footer>
 
   <script>
@@ -468,3 +485,4 @@
   </script>
 </body>
 </html>
+
