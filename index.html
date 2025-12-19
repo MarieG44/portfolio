@@ -67,7 +67,8 @@
 
     /* ===== Header (Left / Center / Right) ===== */
     header{
-      position:relative;
+      position:sticky;         /* sticky again */
+      top:0;
       z-index:10;
       backdrop-filter:saturate(160%) blur(8px);
       background:color-mix(in oklab, var(--bg) 85%, transparent);
@@ -121,7 +122,42 @@
       cursor:pointer;
     }
     .toggle:hover #themeLabel{
-      text-decoration:underline; /* underline “Light/Dark Mode” on hover */
+      text-decoration:underline; /* underline “Light/Dark Mode” on hover (text only) */
+    }
+
+    /* ===== Dropdown nav (for mobile) ===== */
+    .visually-hidden{
+      position:absolute;
+      width:1px;
+      height:1px;
+      padding:0;
+      margin:-1px;
+      overflow:hidden;
+      clip:rect(0 0 0 0);
+      white-space:nowrap;
+      border:0;
+    }
+    .nav-dropdown{
+      display:none; /* hidden by default (desktop) */
+    }
+    .nav-select{
+      font:inherit;
+      border-radius:10px;
+      padding:8px 12px;
+      border:1px solid var(--ring);
+      background:var(--panel);
+      color:var(--text);
+    }
+
+    /* On small screens, hide nav buttons and show dropdown instead */
+    @media (max-width:700px){
+      .nav-center{
+        display:none;
+      }
+      .nav-dropdown{
+        display:block;
+        margin-left:auto;
+      }
     }
 
     /* ===== Top ===== */
@@ -153,7 +189,16 @@
 
     /* ===== Timeline ===== */
     .timeline{position:relative; margin:24px 0;}
-    .timeline::before{content:""; position:absolute; top:0; bottom:0; left:50%; width:2px; background:linear-gradient(180deg, transparent, var(--ring), transparent); z-index:0;}
+    .timeline::before{
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:50%;
+      width:2px;
+      background:linear-gradient(180deg, transparent, var(--ring), transparent);
+      z-index:0;
+    }
     .item{position:relative; width:50%; padding:14px;}
     .item h3{margin:0 0 4px 0}
     .item .meta{color:var(--muted); font-weight:600; margin-bottom:8px}
@@ -173,11 +218,14 @@
       display:grid;
       place-items:center;
       box-shadow:var(--shadow);
+      z-index:2;
     }
     .dot img{width:34px; height:34px} /*logo padding*/
 
     .item .card{
       background:var(--panel);
+      z-index:1;
+      position:relative;
     }
     .timeline .card{
       padding-top:40px; /* push content down so logo doesn't collide with title */
@@ -232,6 +280,18 @@
           <a class="btn btn--ghost" href="#projects">Projects</a>
           <a class="btn btn--ghost" href="#skills">Skills</a>
           <a class="btn btn--ghost" href="#contact">Contact</a>
+        </div>
+
+        <!-- Dropdown menu for small screens -->
+        <div class="nav-dropdown">
+          <label class="visually-hidden" for="navSelect">Navigate to section</label>
+          <select id="navSelect" class="nav-select" aria-label="Section navigation">
+            <option value="">Menu…</option>
+            <option value="#experience">Experience</option>
+            <option value="#projects">Projects</option>
+            <option value="#skills">Skills</option>
+            <option value="#contact">Contact</option>
+          </select>
         </div>
 
         <div class="nav-right">
@@ -482,7 +542,21 @@
       const items=[...tl.querySelectorAll('.item')];
       items.forEach((it,i)=>{ if(!it.dataset.side){ it.dataset.side = i%2? 'right':'left'; } });
     });
+
+    // Dropdown navigation (mobile)
+    const navSelect = document.getElementById('navSelect');
+    if (navSelect) {
+      navSelect.addEventListener('change', (e) => {
+        const targetId = e.target.value;
+        if (targetId) {
+          const section = document.querySelector(targetId);
+          if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+          }
+          e.target.value = ''; // reset to "Menu…" after navigating
+        }
+      });
+    }
   </script>
 </body>
 </html>
-
