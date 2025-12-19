@@ -30,7 +30,7 @@
 
     /* ===================== BASE ===================== */
     *{box-sizing:border-box}
-    html,body{min-height:100%}           /* allow page to scroll; sticky header stays */
+    html,body{min-height:100%}
     body{
       margin:0;
       font:16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
@@ -50,24 +50,24 @@
       font-size:1rem; line-height:1.6;
     }
     .btn:hover{
-      text-decoration:underline; /* show underline on hover for all main buttons */
+      text-decoration:underline;
     }
 
     .btn--ghost{background:var(--panel)}
 
-    .btn--quiet{               /* subtle in-card links */
+    .btn--quiet{
       background:transparent; border:1px solid var(--ring);
       color:var(--muted); box-shadow:none; padding:6px 10px; border-radius:10px;
       font-size:1rem; line-height:1.6;
     }
     .btn--quiet:hover{
       background:color-mix(in oklab, var(--panel) 85%, transparent);
-      text-decoration:underline; /* underline “Source ↗” etc. */
+      text-decoration:underline;
     }
 
     /* ===== Header (Left / Center / Right) ===== */
     header{
-      position:sticky;         /* sticky over the whole page */
+      position:sticky;
       top:0;
       z-index:20;
       backdrop-filter:saturate(160%) blur(8px);
@@ -90,8 +90,6 @@
       display:flex;
       justify-content:center;
       align-items:center;
-      gap:10px;
-      flex-wrap:wrap;
     }
     .nav-links{
       display:flex;
@@ -104,16 +102,20 @@
       display:flex;
       align-items:center;
       gap:10px;
+      justify-content:flex-end;
       justify-self:end;
     }
-    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:inherit; font-weight:700}
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none; color:inherit; font-weight:700;
+    }
     .logo{
       width:34px; height:34px; border-radius:10px; display:grid; place-items:center;
-      background:var(--panel); color:var(--text); border:1px solid var(--ring); box-shadow:none
+      background:var(--panel); color:var(--text); border:1px solid var(--ring); box-shadow:none;
     }
     .nav-center .btn{box-shadow:none}
 
-    /* Toggle: rounded rectangle, slightly smaller than nav buttons */
+    /* Toggle: rounded rectangle */
     .toggle{
       border:1px solid var(--ring);
       border-radius:10px;
@@ -129,7 +131,7 @@
       cursor:pointer;
     }
     .toggle:hover #themeLabel{
-      text-decoration:underline; /* underline “Light/Dark ” on hover (text only) */
+      text-decoration:underline;
     }
 
     /* ===== Mobile hamburger & menu ===== */
@@ -141,13 +143,13 @@
       background:var(--panel);
       color:var(--text);
       cursor:pointer;
-      font-size:1rem;
+      font-size:1.2rem;
       box-shadow:none;
     }
 
     .mobile-menu{
       position:fixed;
-      top:64px;               /* approx header height; keeps header visible */
+      top:64px;               /* approx header height */
       left:0;
       right:0;
       background:var(--panel);
@@ -194,13 +196,23 @@
       border:0;
     }
 
-    /* On small screens, show hamburger & overlay, hide nav buttons */
+    /* On small screens:
+       - hide desktop nav-links
+       - show hamburger
+       - make theme toggle emoji-only
+    */
     @media (max-width:700px){
       .nav-links{
         display:none;
       }
       .menu-toggle{
         display:inline-flex;
+      }
+      #themeLabel{
+        display:none;          /* emoji only */
+      }
+      .toggle{
+        padding:6px;          /* tighter around emoji */
       }
     }
 
@@ -264,7 +276,7 @@
       box-shadow:var(--shadow);
       z-index:2;
     }
-    .dot img{width:34px; height:34px} /*logo padding*/
+    .dot img{width:34px; height:34px}
 
     .item .card{
       background:var(--panel);
@@ -285,12 +297,12 @@
     .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px}
     .card img{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:10px; margin-bottom:10px}
 
-    /* ===== Chips (skills) — body-size ===== */
+    /* ===== Chips (skills) ===== */
     .badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
     .badge{
       font-size:1rem; line-height:1.6;
       padding:6px 10px; border-radius:999px;
-      border:1px solid var(--ring);   /* solid border */
+      border:1px solid var(--ring);
       color:var(--muted); background:transparent;
     }
 
@@ -303,7 +315,6 @@
     #contact .card, #contact .card *, #contact .card strong{color:var(--muted)}
     #contact .card strong{font-weight:600}
 
-    /* Make "Skills Summary" look like the bold labels in Contact */
     #skills .card h3{
       font-size:1rem;
       font-weight:600;
@@ -316,19 +327,15 @@
     <div class="container">
       <nav class="nav" aria-label="Primary">
         <div class="nav-left">
-          <a class="brand" href="#top"><span class="logo">Y</span></a>
+          <a class="brand" href="#top"><span class="logo">Y</span> Your Name</a>
         </div>
 
         <div class="nav-center">
-          <!-- Mobile hamburger button -->
-          <button id="menuToggle" class="menu-toggle" type="button"
-                  aria-label="Open navigation" aria-expanded="false">
-            ☰
-          </button>
-
           <!-- Desktop nav buttons -->
           <div class="nav-links" aria-label="Section navigation">
+            <a class="btn btn--ghost" href="#top">About</a>
             <a class="btn btn--ghost" href="#experience">Experience</a>
+            <a class="btn btn--ghost" href="#volunteer">Volunteer</a>
             <a class="btn btn--ghost" href="#projects">Projects</a>
             <a class="btn btn--ghost" href="#skills">Skills</a>
             <a class="btn btn--ghost" href="#contact">Contact</a>
@@ -336,6 +343,13 @@
         </div>
 
         <div class="nav-right">
+          <!-- Mobile hamburger button (shown only on small screens) -->
+          <button id="menuToggle" class="menu-toggle" type="button"
+                  aria-label="Open navigation" aria-expanded="false">
+            ☰
+          </button>
+
+          <!-- Theme toggle -->
           <button id="themeToggle" type="button" class="toggle" aria-pressed="false" title="Toggle theme">
             <span id="themeIcon">☀️</span><span id="themeLabel">Light Mode</span>
           </button>
@@ -570,27 +584,24 @@
       if(mode==='light'){
         root.classList.add('light');
         icon.textContent='☀️';
-        label.textContent='Light';
+        label.textContent='Light Mode';
         toggleBtn.setAttribute('aria-pressed','true');
       } else {
         root.classList.remove('light');
         icon.textContent='🌙';
-        label.textContent='Dark';
+        label.textContent='Dark Mode';
         toggleBtn.setAttribute('aria-pressed','false');
       }
       localStorage.setItem('theme', mode);
     }
-    // initial – default to light if nothing saved yet
     const saved = localStorage.getItem('theme');
     applyTheme(saved || 'light');
 
-    // toggle
     toggleBtn.addEventListener('click', ()=>{
       const next = root.classList.contains('light') ? 'dark' : 'light';
       applyTheme(next);
     });
 
-    // year
     document.getElementById('year').textContent=new Date().getFullYear();
 
     // Alternate sides for timelines if data-side omitted
@@ -625,7 +636,6 @@
     if(mobileMenuClose){
       mobileMenuClose.addEventListener('click', closeMenu);
     }
-    // Close menu when a link is clicked
     if(mobileMenu){
       mobileMenu.querySelectorAll('a').forEach(link=>{
         link.addEventListener('click', closeMenu);
@@ -634,4 +644,3 @@
   </script>
 </body>
 </html>
-
