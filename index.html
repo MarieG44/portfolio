@@ -296,6 +296,15 @@
       padding-top:40px; /* push content down so logo doesn't collide with title */
     }
 
+    .timeline .meta a{
+      color:inherit;
+      text-decoration:none;
+    }
+    
+    .timeline .meta a:hover{
+      text-decoration:underline;
+    }
+
     /* MOBILE TIMELINE LAYOUT – make left & right items look the same */
     @media (max-width: 900px){
       .timeline::before{left:20px}
@@ -439,7 +448,7 @@
 
       <div class="timeline" aria-label="Professional timeline">
         <div class="item" data-side="left">
-          <div class="dot" 
+          <div class="dot"> 
             <a href="https://www.microsoft.com" target="_blank" rel="noopener" aria-label="Microsoft">
               <img alt="Microsoft logo" src="images/microsoft.png">
             </a>
