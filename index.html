@@ -111,7 +111,7 @@
       display:flex; align-items:center; gap:10px;
       text-decoration:none; color:inherit; font-weight:700;
     }
-    .logo{
+    .{
       width:34px; height:34px; border-radius:10px; display:grid; place-items:center;
       background:var(--panel); color:var(--text); border:1px solid var(--ring); box-shadow:var(--shadow);
     }
@@ -131,7 +131,7 @@
       font-size:0.9rem;
       box-shadow:var(--shadow);
       cursor:pointer;
-      height:34px;          /* same height as logo & menu */
+      height:34px;          /* same height as  & menu */
       line-height:1;
     }
     .toggle:hover #themeLabel{
@@ -277,7 +277,7 @@
       transform:translate(-50%,-50%);
       background:var(--panel);
       border:2px solid var(--ring);
-      width:55px; /*logo box sizes*/
+      width:55px; /* box sizes*/
       height:55px;
       border-radius:12px;
       display:grid;
@@ -285,7 +285,7 @@
       box-shadow:var(--shadow);
       z-index:2;
     }
-    .dot img{width:34px; height:34px} /*logo sizes*/
+    .dot img{width:42px; height:42px} /*logo sizes*/
 
     .item .card{
       background:var(--panel);
@@ -302,11 +302,11 @@
       .item{
         width:100%;
         left:0 !important;
-        padding:14px 14px 14px 37px; /*control space between logo and card*/
+        padding:14px 14px 14px 30px; /*control space between logo and card*/
       }
       .item[data-side="left"],
       .item[data-side="right"]{
-        padding-left:37px; /*control space between logo and card*/
+        padding-left:30px; /*control space between logo and card*/
         padding-right:14px;
       }
       .dot{left:20px}
