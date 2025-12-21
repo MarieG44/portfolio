@@ -359,6 +359,49 @@
     .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px}
     .card img{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:10px; margin-bottom:10px}
 
+    /* Project video thumbnail wrapper */
+    .proj-thumbnail-wrapper{
+      position:relative;
+      display:block;
+    }
+
+    /* Make sure the image fills the wrapper like before */
+    .proj-thumbnail-wrapper img{
+      display:block;
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      border-radius:10px;
+      margin-bottom:10px;
+    }
+
+    /* Play icon overlay */
+    .proj-thumbnail-play{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:2.3rem;
+      color:rgba(255,255,255,0.9);
+      text-shadow:0 2px 6px rgba(0,0,0,0.5);
+      pointer-events:none;            /* clicks go to the link, not the icon */
+      opacity:0.85;
+    }
+
+    /* Optional: slight hover feedback */
+    .proj-thumbnail-link:hover .proj-thumb-play{
+      opacity:1;
+    }
+
+    .proj-thumbnail-link:hover img{
+      transform:scale(1.02);
+    }
+
+    .proj-thumbnail-link img{
+      transition:transform 0.18s ease-out;
+    }
+
     /* ===== Chips (skills) ===== */
     .badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
     .badge{
@@ -610,12 +653,14 @@
       <h2 id="proj-title">Projects</h2>
       <div class="grid">
         <article class="card">
-          <a class="project-image-link"
-            href="https://github.com/yourname/marketing-analytics"
-            target="_blank"
-            rel="noopener"
-            aria-label="Open Marketing Analytics Hub project">
-            <img src="images/connect-four.png" alt="Analytics dashboard" />
+          <a class="project-thumbnail-link"
+            href="videos/connect-four.mp4"
+            aria-label="Watch Marketing Analytics Hub demo">
+           <div class="proj-thumbnail-wrapper">
+             <img src="images/connect-four.png"
+                  alt="Marketing Analytics Hub demo thumbnail" />
+             <span class="proj-thumbnail-play" aria-hidden="true">▶</span>
+           </div>
           </a>
           <h3>Marketing Analytics Hub</h3>
           <div class="proj-meta">
