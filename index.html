@@ -284,7 +284,6 @@
     }
     .item ul{margin:8px 0 0 0;    /* no outer left margin */
       padding-left:18px; /*small padding so bullets don’t touch the border*/
-      list-style-position:inside;
     }
     .item[data-side="left"]{left:0; padding-right:28px}
     .item[data-side="right"]{left:50%; padding-left:28px}
@@ -433,7 +432,7 @@
         <div class="nav-center">
           <!-- Desktop navigation buttons -->
           <div class="nav-links" aria-label="Section navigation">
-            <a class="btn btn--ghost" href="#top"        data-scroll="#top">About</a>
+            <a class="btn btn--ghost" href="#about"        data-scroll="#about">About</a>
             <a class="btn btn--ghost" href="#experience" data-scroll="#experience">Experience</a>
             <a class="btn btn--ghost" href="#volunteer"  data-scroll="#volunteer">Volunteer</a>
             <a class="btn btn--ghost" href="#projects"   data-scroll="#projects">Projects</a>
@@ -464,7 +463,7 @@
       <button id="mobileMenuClose" class="mobile-menu-close" type="button" aria-label="Close navigation">✕</button>
     </div>
     <nav aria-label="Mobile navigation">
-      <a href="#top"        data-scroll="#top">About</a>
+      <a href="#about"        data-scroll="#about">About</a>
       <a href="#experience" data-scroll="#experience">Experience</a>
       <a href="#volunteer"  data-scroll="#volunteer">Volunteer</a>
       <a href="#projects"   data-scroll="#projects">Projects</a>
@@ -475,7 +474,7 @@
 
   <main id="top" class="container">
     <!-- ===== TOP ===== -->
-    <section class="top" aria-labelledby="intro-title">
+    <section id="about" class="top" aria-labelledby="intro-title">
       <h1 id="intro-title">Software Engineer &amp; Product-minded Builder</h1>
       <div class="contact" aria-label="Primary contact">
         <span class="pill">📍 City (open to remote)</span>
