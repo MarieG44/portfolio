@@ -18,6 +18,9 @@
 
       /* Hero title size */
       --hero-size:clamp(24px, 4vw, 34px);
+
+      /*spacing between sections*/
+      --section-spacing:40px;   
     }
     :root.light{
       --bg:#d5f5d1;
@@ -226,7 +229,7 @@
     }
 
     /* ===== Top ===== */
-    .top{display:grid; gap:18px; padding:40px 0}
+    .top{display:grid; gap:18px; padding:var(--section-spacing) 0}
     .top .contact{display:flex; flex-wrap:wrap; gap:10px}
     .pill{border:1px solid var(--ring); border-radius:999px; padding:6px 10px; color:var(--muted); background:color-mix(in oklab, var(--panel) 70%, transparent)}
     .summary{display:grid; gap:6px}
@@ -238,8 +241,8 @@
     .elevator{font-size:1.05rem; color:var(--muted)}
 
     /* ===== Sections / Cards ===== */
-    .section{padding:14px 0 8px}
-    .section h2{margin:0 0 8px 0}
+    .section{padding:var(--section-spacing) 0}
+    .section h2{margin:0 0 12px 0}
     .card{
       background:var(--panel);
       border:1px solid var(--ring);
@@ -276,7 +279,9 @@
       color: inherit;        /* stay same color on hover */
       text-decoration: underline; /* just add the underline */
     }
-    .item ul{margin:8px 0 0 18px}
+    .item ul{margin:8px 0 0 0;    /* no outer left margin */
+      padding-left:18px; /*small padding so bullets don’t touch the border*/
+    }
     .item[data-side="left"]{left:0; padding-right:28px}
     .item[data-side="right"]{left:50%; padding-left:28px}
     .dot{
@@ -422,14 +427,14 @@
         </div>
 
         <div class="nav-center">
-          <!-- Desktop nav buttons -->
+          <!-- Desktop navigation buttons -->
           <div class="nav-links" aria-label="Section navigation">
-            <a class="btn btn--ghost" href="#top">About</a>
-            <a class="btn btn--ghost" href="#experience">Experience</a>
-            <a class="btn btn--ghost" href="#volunteer">Volunteer</a>
-            <a class="btn btn--ghost" href="#projects">Projects</a>
-            <a class="btn btn--ghost" href="#skills">Skills</a>
-            <a class="btn btn--ghost" href="#contact">Contact</a>
+            <a class="btn btn--ghost" href="#top"        data-scroll="#top">About</a>
+            <a class="btn btn--ghost" href="#experience" data-scroll="#experience">Experience</a>
+            <a class="btn btn--ghost" href="#volunteer"  data-scroll="#volunteer">Volunteer</a>
+            <a class="btn btn--ghost" href="#projects"   data-scroll="#projects">Projects</a>
+            <a class="btn btn--ghost" href="#skills"     data-scroll="#skills">Skills</a>
+            <a class="btn btn--ghost" href="#contact"    data-scroll="#contact">Contact</a>
           </div>
         </div>
 
@@ -455,12 +460,12 @@
       <button id="mobileMenuClose" class="mobile-menu-close" type="button" aria-label="Close navigation">✕</button>
     </div>
     <nav aria-label="Mobile navigation">
-      <a href="#top">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#volunteer">Volunteer</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
+      <a href="#top"        data-scroll="#top">About</a>
+      <a href="#experience" data-scroll="#experience">Experience</a>
+      <a href="#volunteer"  data-scroll="#volunteer">Volunteer</a>
+      <a href="#projects"   data-scroll="#projects">Projects</a>
+      <a href="#skills"     data-scroll="#skills">Skills</a>
+      <a href="#contact"    data-scroll="#contact">Contact</a>
     </nav>
   </div>
 
@@ -743,6 +748,21 @@
         link.addEventListener('click', closeMenu);
       });
     }
+    // ===== Smooth scroll between sections without changing the URL hash =====
+    document.querySelectorAll('[data-scroll]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();  // don't update hash / history
+
+        const targetSelector = link.getAttribute('data-scroll');
+        const target = document.querySelector(targetSelector);
+        if (!target) return;
+
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+    });
   </script>
 </body>
 </html>
