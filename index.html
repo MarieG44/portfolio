@@ -267,6 +267,15 @@
     .item{position:relative; width:50%; padding:14px;}
     .item h3{margin:0 0 4px 0}
     .item .meta{color:var(--muted); font-weight:600; margin-bottom:8px}
+    .item .meta a {
+      color: inherit;        /* use the same muted color */
+      font-weight: inherit;  /* don't make it heavier */
+      text-decoration: none; /* no underline by default */
+    }
+    .item .meta a:hover {
+      color: inherit;        /* stay same color on hover */
+      text-decoration: underline; /* just add the underline */
+    }
     .item ul{margin:8px 0 0 18px}
     .item[data-side="left"]{left:0; padding-right:28px}
     .item[data-side="right"]{left:50%; padding-left:28px}
@@ -296,14 +305,16 @@
       padding-top:40px; /* push content down so logo doesn't collide with title */
     }
 
+    /*
+    this is another way to format the company name link in the experience section
     .timeline .meta a{
       color:inherit;
       text-decoration:none;
     }
-    
     .timeline .meta a:hover{
       text-decoration:underline;
     }
+    */
 
     /* MOBILE TIMELINE LAYOUT – make left & right items look the same */
     @media (max-width: 900px){
@@ -379,8 +390,17 @@
     }
     .project-image-link img{
       display: block;          /* removes tiny gap below the image */
+      transition:
+      transform 150ms ease,
+      filter 150ms ease;
     }
-
+    /* Hover / keyboard-focus effect */
+    .project-image-link:hover img,
+    .project-image-link:focus-visible img{
+    transform:scale(1.03);               /* slight zoom */
+    filter:brightness(1.05);             /* a bit brighter */
+    }
+    
     /* ===== Skills & Contact styling ===== */
     #skills .card, #skills .card *{color:var(--muted)}
     #contact .card, #contact .card *, #contact .card strong{color:var(--muted)}
