@@ -359,48 +359,91 @@
     .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px}
     .card img{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:10px; margin-bottom:10px}
 
-    /* Project video thumbnail wrapper */
-    .proj-thumbnail-wrapper{
-      position:relative;
+
+    /* ===== Project video thumbnails (test 2) ===== */
+    .proj-thumbnail-button{
+      background:none;
+      border:none;
+      padding:0;
+      margin:0;
+      width:100%;
+      text-align:inherit;
       display:block;
+      cursor:pointer;
     }
 
-    /* Make sure the image fills the wrapper like before */
+    .proj-thumbnail-wrapper{
+      position:relative;
+      border-radius:10px;
+      overflow:hidden;
+    }
+
     .proj-thumbnail-wrapper img{
       display:block;
       width:100%;
-      aspect-ratio:16/9;
-      object-fit:cover;
-      border-radius:10px;
-      margin-bottom:10px;
+      transition:transform 0.25s ease, filter 0.25s ease;
     }
 
-    /* Play icon overlay */
+    /* Hover effect: slight zoom + darken (desktop / hover devices only) */
+    @media (hover:hover){
+      .proj-thumbnail-wrapper:hover img{
+        transform:scale(1.02);
+        filter:brightness(0.9);
+      }
+    }
+
+    /* “Play” cue: small black triangle bottom-right */
     .proj-thumbnail-play{
       position:absolute;
+      right:8px;
+      bottom:8px;
+      width:0;
+      height:0;
+      border-left:14px solid rgba(0,0,0,0.9);   /* triangle */
+      border-top:10px solid transparent;
+      border-bottom:10px solid transparent;
+    }
+
+    /* ===== Video overlay popup ===== */
+    .proj-video-overlay{
+      position:fixed;
       inset:0;
-      display:flex;
+      background:rgba(0,0,0,0.6);
+      display:none;
       align-items:center;
       justify-content:center;
-      font-size:2.3rem;
-      color:rgba(255,255,255,0.9);
-      text-shadow:0 2px 6px rgba(0,0,0,0.5);
-      pointer-events:none;            /* clicks go to the link, not the icon */
-      opacity:0.85;
+      z-index:40;
     }
 
-    /* Optional: slight hover feedback */
-    .proj-thumbnail-link:hover .proj-thumb-play{
-      opacity:1;
+    .proj-video-overlay.open{
+      display:flex;
     }
 
-    .proj-thumbnail-link:hover img{
-      transform:scale(1.02);
+    .proj-video-inner{
+      background:var(--panel);
+      border-radius:16px;
+      padding:8px;
+      max-width:800px;
+      width:90%;
+      box-shadow:var(--shadow);
     }
 
-    .proj-thumbnail-link img{
-      transition:transform 0.18s ease-out;
+    .proj-video-inner video{
+      display:block;
+      width:100%;
+      border-radius:10px;
     }
+
+    .proj-video-close{
+      background:transparent;
+      border:none;
+      color:var(--text);
+      font-size:1.4rem;
+      cursor:pointer;
+      align-self:flex-end;
+      margin-bottom:4px;
+    }
+
 
     /* ===== Chips (skills) ===== */
     .badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
@@ -653,15 +696,19 @@
       <h2 id="proj-title">Projects</h2>
       <div class="grid">
         <article class="card">
-          <a class="project-thumbnail-link"
-            href="videos/connect-four.mp4"
-            aria-label="Watch Marketing Analytics Hub demo">
-           <div class="proj-thumbnail-wrapper">
-             <img src="images/connect-four.png"
-                  alt="Marketing Analytics Hub demo thumbnail" />
-             <span class="proj-thumbnail-play" aria-hidden="true">▶</span>
-           </div>
-          </a>
+          
+          <!-- CLICKABLE THUMBNAIL BUTTON -->
+          <button class="proj-thumbnail-button"
+                  type="button"
+                  data-video="videos/connect-four.mp4"
+                  aria-label="Play Marketing Analytics Hub demo">
+            <div class="proj-thumbnail-wrapper">
+              <img src="images/connect-four.png"
+                   alt="Marketing Analytics Hub demo thumbnail" />
+              <span class="proj-thumbnail-play" aria-hidden="true"></span>
+            </div>
+          </button>
+          
           <h3>Marketing Analytics Hub</h3>
           <div class="proj-meta">
             <a href="https://github.com/yourname/marketing-analytics"
@@ -725,6 +772,16 @@
       </div>
     </section>
   </main>
+
+  <!-- Project video overlay -->
+  <div class="proj-video-overlay" id="projVideoOverlay" aria-hidden="true">
+    <div class="proj-video-inner">
+      <button type="button"
+              class="proj-video-close"
+              aria-label="Close video">✕</button>
+      <video id="projVideo" controls playsinline></video>
+    </div>
+  </div>
 
   <footer>
     <div class="container">
@@ -818,6 +875,50 @@
         });
       });
     });
+
+    // ===== Project video popup =====
+    const projOverlay = document.getElementById('projVideoOverlay');
+    const projVideo = document.getElementById('projVideo');
+    const projClose = document.querySelector('.proj-video-close');
+
+    function openProjectVideo(src){
+      if(!projOverlay || !projVideo) return;
+      projVideo.src = src;
+      projOverlay.classList.add('open');
+      projOverlay.setAttribute('aria-hidden','false');
+      projVideo.play().catch(() => {});
+    }
+
+    function closeProjectVideo(){
+      if(!projOverlay || !projVideo) return;
+      projOverlay.classList.remove('open');
+      projOverlay.setAttribute('aria-hidden','true');
+      projVideo.pause();
+      projVideo.removeAttribute('src'); // reset
+      projVideo.load();
+    }
+
+    // Click on thumbnail button
+    document.querySelectorAll('.proj-thumbnail-button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const src = btn.getAttribute('data-video');
+        if(src) openProjectVideo(src);
+      });
+    });
+
+    // Close button
+    if(projClose){
+      projClose.addEventListener('click', closeProjectVideo);
+    }
+
+    // Click outside the video (on the dark backdrop)
+    if(projOverlay){
+      projOverlay.addEventListener('click', (e) => {
+        if(e.target === projOverlay){
+          closeProjectVideo();
+        }
+      });
+    }
   </script>
 </body>
 </html>
