@@ -537,7 +537,7 @@
         <div class="nav-right">
           <!-- Theme toggle (left) -->
           <button id="themeToggle" type="button" class="toggle" aria-pressed="false" title="Toggle theme">
-            <span id="themeIcon">☀️</span><span id="themeLabel"></span>
+            <span id="themeIcon">☀️</span><span id="themeLabel">Light Mode</span>
           </button>
 
           <!-- Mobile hamburger button (right) -->
@@ -803,7 +803,7 @@
       if(mode==='light'){
         root.classList.add('light');
         icon.textContent='☀️';
-        label.textContent='Light Mode';
+        /*label.textContent='Light Mode';*/
         toggleBtn.setAttribute('aria-pressed','true');
       } else {
         root.classList.remove('light');
