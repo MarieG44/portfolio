@@ -311,12 +311,12 @@
 
     /* ===== Education grid ===== */
     .edu-subsection{
-      margin-top:30px;                 /* space BEFORE the subsection title */
+      margin-top:25px;                 /* space BEFORE the subsection title */
     }
 
     /* Extra spacing before every subsection that follows another one (so “Certificates & Courses”, etc.) */
     .edu-subsection + .edu-subsection{
-      margin-top:60px;   
+      margin-top:50px;   
     }
 
     /* Subsection titles: same look as "Programming" in Skills card */
@@ -324,7 +324,7 @@
       font-size:1rem;
       font-weight:600;
       color:var(--muted);
-      margin:0;  /* space AFTER the title, before the cards */
+      margin:0;  
     }
 
     /* Grid: 1 column on small, MAX 2 columns on wider screens */
@@ -333,7 +333,7 @@
       grid-template-columns:repeat(2, minmax(260px, 1fr));       /* default = single column */
       row-gap:35px;                    /* vertical space between rows */
       column-gap:18px;                 /* horizontal space between cards */
-      margin-top:50px;                 /* space between label and first row */ /* space AFTER the title, before the cards */
+      margin-top:50px;                 /* space AFTER the title, before the cards */
     }
 
     @media (min-width: 780px){
