@@ -311,7 +311,7 @@
 
     /* ===== Education grid ===== */
     .edu-subsection{
-      margin-top:60px;                 /* space BEFORE the subsection title */
+      margin-top:30px;                 /* space BEFORE the subsection title */
     }
 
     /* Extra spacing before every subsection that follows another one (so “Certificates & Courses”, etc.) */
@@ -324,16 +324,16 @@
       font-size:1rem;
       font-weight:600;
       color:var(--muted);
-      margin:0 0 32px 0;  /* space AFTER the title, before the cards */
+      margin:0;  /* space AFTER the title, before the cards */
     }
 
     /* Grid: 1 column on small, MAX 2 columns on wider screens */
     .edu-grid{
       display:grid;
-      grid-template-columns:1fr;       /* default = single column */
+      grid-template-columns:repeat(2, minmax(260px, 1fr));       /* default = single column */
       row-gap:35px;                    /* vertical space between rows */
       column-gap:18px;                 /* horizontal space between cards */
-      margin-top:30px;                 /* space between label and first row */
+      margin-top:50px;                 /* space between label and first row */ /* space AFTER the title, before the cards */
     }
 
     @media (min-width: 780px){
