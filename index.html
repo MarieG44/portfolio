@@ -93,13 +93,14 @@
       align-items:center;
       gap:10px;
     }
-    .{
+    .nav-center{
       display:flex;
       justify-content:center;
       align-items:center;
     }
+    /* Hide desktop nav buttons on all screen sizes */
     .nav-links{
-      display:flex;
+      display:none;
       justify-content:center;
       align-items:center;
       gap:10px;
@@ -143,9 +144,8 @@
       text-decoration:underline;
     }
 
-    /* ===== Mobile hamburger & menu ===== */
+    /* ===== Hamburger button (now visible on ALL screen sizes) ===== */
     .menu-toggle{
-      display:inline-flex;           
       border:1px solid var(--ring);
       border-radius:10px;
       padding:6px 12px;
@@ -154,11 +154,11 @@
       cursor:pointer;
       font-size:1.2rem;
       box-shadow:var(--shadow);
-      display:none;
       height:34px;            /* same height */
       line-height:1;
       align-items:center;
       justify-content:center;
+      display:inline-flex;     /* <- always visible */
     }
 
     .mobile-menu{
@@ -211,12 +211,10 @@
     }
 
     /* On small screens:
-       - hide desktop nav-links
-       - show hamburger
-       - make theme toggle emoji-only (but keep same height)
+       - keep hamburger
+       - hide text label on theme toggle
     */
     @media (max-width:700px){
-      
       #themeLabel{
         display:none;          /* emoji only */
       }
@@ -310,17 +308,6 @@
       padding-top:40px; /* push content down so logo doesn't collide with title */
     }
 
-    /*
-    this is another way to format the company name link in the experience section
-    .timeline .meta a{
-      color:inherit;
-      text-decoration:none;
-    }
-    .timeline .meta a:hover{
-      text-decoration:underline;
-    }
-    */
-
     /* MOBILE TIMELINE LAYOUT – make left & right items look the same */
     @media (max-width: 900px){
       .timeline::before{left:20px}
@@ -342,7 +329,7 @@
       place-items:center;
       width:100%;
       height:100%;
-      } /*so the link fills the dot*/
+    } /*so the link fills the dot*/
 
     .dot a:hover img{
       /* optional tiny hover effect */
@@ -387,27 +374,12 @@
       }
     }
 
-    /* “Play” cue: small black triangle bottom-right */
+    /* “Play” cue: centered rounded button */
     .proj-thumbnail-play{
       position:absolute;
       top:50%;
       left:50%;
-      transform:translate(-50%, -50%); /* center it */
-      /*
-          Bottom right corner
-      right:16px;  <-- horizontal position, decrease to move closer to bottom right corner 
-      bottom:16px;  <-- vertical position, decrease to move closer to bottom right corner 
-          Top left corner
-      left:8px;
-      top:8px;
-      right:auto;
-      bottom:auto;
-      width:0;
-      height:0;
-      border-left:20px solid rgba(0,0,0,0.55);  <-- triangle width
-      border-top:15px solid transparent; <-- triangle height (top)
-      border-bottom:15px solid transparent;  <-- triangle height (bottom)
-      */
+      transform:translate(-50%, -50%);
       width:52px;
       height:52px;
       background:rgba(0,0,0,0.55);  /* button fill color */
@@ -417,7 +389,6 @@
       border-radius:12px;
     }
 
-    /* Triangle inside the button */
     .proj-thumbnail-play::before{
       content:"";
       width:0;
@@ -447,8 +418,8 @@
       background:var(--panel);
       border-radius:16px;
       padding:8px;
-      max-width:550px; /* <-- controls max width on large screens */
-      width:80%; /* <-- controls width relative to viewport */
+      max-width:550px;
+      width:80%;
       box-shadow:var(--shadow);
     }
 
@@ -456,7 +427,7 @@
       display:block;
       width:100%;
       border-radius:10px;
-      max-height:55vh;  /* <-- how tall the video can be (relative to viewport) */
+      max-height:55vh;
     }
 
     .proj-video-close{
@@ -471,11 +442,10 @@
 
     @media (max-width:700px){
       .video-modal{
-        width:80vw;    /* almost full width on phones */
+        width:80vw;
         max-width:none;
       }
     }
-
 
     /* ===== Chips (skills) ===== */
     .badges{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
@@ -500,16 +470,14 @@
     /* ===== Project meta ===== */
     .proj-meta{margin:6px 0 8px 0; color:var(--muted); font-weight:600}
     .proj-meta strong{color:inherit; font-weight:700}
-    /* Make project meta links look like the rest of the line */
     .proj-meta a{
-      color: inherit;          /* same muted color as .proj-meta */
-      font-weight: inherit;    /* don’t make it bolder */
-      text-decoration: none;   /* no underline by default */
+      color: inherit;
+      font-weight: inherit;
+      text-decoration: none;
     }
-
     .proj-meta a:hover{
-      color: inherit;          /* keep same color on hover */
-      text-decoration: underline; /* just add underline so it feels clickable */
+      color: inherit;
+      text-decoration: underline;
     }
 
     /* Optional: make the thumbnail link behave like a block */
@@ -517,16 +485,15 @@
       display: block;
     }
     .project-image-link img{
-      display: block;          /* removes tiny gap below the image */
+      display: block;
       transition:
-      transform 150ms ease,
-      filter 150ms ease;
+        transform 150ms ease,
+        filter 150ms ease;
     }
-    /* Hover / keyboard-focus effect */
     .project-image-link:hover img,
     .project-image-link:focus-visible img{
-    transform:scale(1.03);               /* slight zoom */
-    filter:brightness(1.05);             /* a bit brighter */
+      transform:scale(1.03);
+      filter:brightness(1.05);
     }
     
     /* ===== Skills & Contact styling ===== */
@@ -549,29 +516,26 @@
           <a class="brand" href="#about" data-scroll="#about">
             <img src="images/favicon.png" alt="personal logo" class="logo">
           </a>
-          <!--
-          <a class="brand" href="#top"><span class="logo">Y</span> Your Name</a>
-          this is if you want your name to appear next to logo with initials-->
         </div>
 
         <div class="nav-center">
+          <!-- Desktop nav buttons kept in DOM but hidden via CSS -->
           <div class="nav-links" aria-label="Section navigation">
-            <a class="btn btn--ghost" href="#top">About</a>
-            <a class="btn btn--ghost" href="#experience">Experience</a>
-            <a class="btn btn--ghost" href="#volunteer">Volunteer</a>
-            <a class="btn btn--ghost" href="#projects">Projects</a>
-            <a class="btn btn--ghost" href="#skills">Skills</a>
-            <a class="btn btn--ghost" href="#contact">Contact</a>
+            <a class="btn btn--ghost" href="#about"        data-scroll="#about">About</a>
+            <a class="btn btn--ghost" href="#experience" data-scroll="#experience">Experience</a>
+            <a class="btn btn--ghost" href="#volunteer"  data-scroll="#volunteer">Volunteer</a>
+            <a class="btn btn--ghost" href="#projects"   data-scroll="#projects">Projects</a>
+            <a class="btn btn--ghost" href="#skills"     data-scroll="#skills">Skills</a>
+            <a class="btn btn--ghost" href="#contact"    data-scroll="#contact">Contact</a>
           </div>
         </div>
 
         <div class="nav-right">
-          <!-- Theme toggle (left) -->
           <button id="themeToggle" type="button" class="toggle" aria-pressed="false" title="Toggle theme">
             <span id="themeIcon">☀️</span><span id="themeLabel">Light Mode</span>
           </button>
 
-          <!-- Hamburger button (right) -->
+          <!-- Hamburger menu button (desktop + mobile) -->
           <button id="menuToggle" class="menu-toggle" type="button"
                   aria-label="Open navigation" aria-expanded="false">
             ☰
@@ -581,7 +545,7 @@
     </div>
   </header>
 
-  <!-- Mobile dropdown menu panel -->
+  <!-- Mobile / overlay menu panel (used for ALL screen sizes now) -->
   <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-menu-header">
       <button id="mobileMenuClose" class="mobile-menu-close" type="button" aria-label="Close navigation">✕</button>
@@ -727,7 +691,6 @@
       <h2 id="proj-title">Projects</h2>
       <div class="grid">
         <article class="card">
-          
           <!-- CLICKABLE THUMBNAIL BUTTON -->
           <button class="proj-thumbnail-button"
                   type="button"
@@ -743,9 +706,9 @@
           <h3>Marketing Analytics Hub</h3>
           <div class="proj-meta">
             <a href="https://github.com/yourname/marketing-analytics"
-              target="_blank"
-              rel="noopener">
-             Personal
+               target="_blank"
+               rel="noopener">
+              Personal
             </a> • 2024–2025 • Remote
           </div>
           <p>ETL + dashboard for campaign performance, LTV, and cohort retention.</p>
@@ -860,7 +823,7 @@
       items.forEach((it,i)=>{ if(!it.dataset.side){ it.dataset.side = i%2? 'right':'left'; } });
     });
 
-    // ===== Mobile hamburger menu logic =====
+    // ===== Hamburger menu logic (all screen sizes) =====
     const menuToggle = document.getElementById('menuToggle');
     const mobileMenu = document.getElementById('mobileMenu');
     const mobileMenuClose = document.getElementById('mobileMenuClose');
@@ -891,6 +854,7 @@
         link.addEventListener('click', closeMenu);
       });
     }
+
     // ===== Smooth scroll between sections without changing the URL hash =====
     document.querySelectorAll('[data-scroll]').forEach(link => {
       link.addEventListener('click', (e) => {
