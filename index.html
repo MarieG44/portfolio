@@ -309,54 +309,50 @@
     }
 
 
-    /* ===== Education grid (non-timeline) ===== */
-    .edu-group{
+    /* ===== Education grid ===== */
+    .edu-subsection{
       margin-top:16px;
     }
-
-    .edu-subtitle{
-      margin:0 0 8px 0;
+    /* Subsection titles: same vibe as "Programming" in Skills card */
+    .edu-label{
       font-size:1rem;
       font-weight:600;
+      color:var(--muted);
+      margin:0 0 8px 0;   /* space above cards */
     }
 
-    /* Two-card grid, same feel as Projects */
+    /* Two-up grid like Projects (collapses to 1 column on mobile) */
     .edu-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
       gap:16px;
     }
 
-    /* Re-use .card styling but add space for the icon “tab” */
+    /* Make edu cards behave like experience cards */
     .edu-card{
       position:relative;
-      padding-top:32px;         /* room for the floating icon */
+      padding-top:40px;        /* room for the icon capsule */
     }
 
-    /* Little icon that “sits” on top of the card */
+    /* Icon capsule: centered on top edge like experience logos */
     .edu-icon{
       position:absolute;
-      top:-22px;
-      left:32px;
-      width:44px;
-      height:44px;
+      top:0;
+      left:50%;
+      transform:translate(-50%, -50%);
+      width:46px;
+      height:46px;
       border-radius:12px;
       display:grid;
       place-items:center;
       background:var(--panel);
-      border:1px solid var(--ring);
+      border:2px solid var(--ring);
     }
 
-    /* Slightly smaller for emojis / icons inside */
-    .edu-icon span{
-      font-size:1.4rem;
-    }
-
-    /* Make the meta line look like other muted lines */
-    .edu-meta{
-      color:var(--muted);
-      font-weight:600;
-      margin-bottom:8px;
+    /* Bullet spacing in education cards = experience cards */
+    .edu-card ul{
+      margin:8px 0 0 0;        /* no extra outer left margin */
+      padding-left:18px;       /* slight indent so bullets don't touch border */
     }
 
 
@@ -791,18 +787,14 @@
       <h2 id="edu-title">Education</h2>
 
       <!-- Degrees -->
-      <div class="edu-group">
-        <h3 class="edu-subtitle">Degrees</h3>
+      <div class="edu-subsection">
+        <div class="edu-label">Degrees</div>
         <div class="edu-grid">
-          
+          <!-- Degree 1 -->
           <article class="card edu-card">
-            <div class="edu-icon" aria-hidden="true">
-              <span>🎓</span>
-            </div>
+            <div class="edu-icon" aria-hidden="true">🎓</div>
             <h3>B.Sc. in Computer Science</h3>
-            <div class="edu-meta">
-              University Name • 2021–2025 • City
-            </div>
+            <div class="meta">University Name • 2021–2025 • City</div>
             <ul>
               <li>Coursework in algorithms, databases, and machine learning.</li>
               <li>Capstone project: built a full-stack analytics dashboard.</li>
@@ -815,15 +807,11 @@
             </div>
           </article>
 
-                    
+          <!-- Degree 2 (optional / example) -->
           <article class="card edu-card">
-            <div class="edu-icon" aria-hidden="true">
-              <span>🎓</span>
-            </div>
+            <div class="edu-icon" aria-hidden="true">🎓</div>
             <h3>B.Sc. in Computer Science</h3>
-            <div class="edu-meta">
-              University Name • 2021–2025 • City
-            </div>
+            <div class="meta">University Name • 2021–2025 • City</div>
             <ul>
               <li>Coursework in algorithms, databases, and machine learning.</li>
               <li>Capstone project: built a full-stack analytics dashboard.</li>
@@ -835,23 +823,18 @@
               <span class="badge">Capstone Project</span>
             </div>
           </article>
-          
         </div>
       </div>
 
       <!-- Certificates & Courses -->
-      <div class="edu-group">
-        <h3 class="edu-subtitle">Certificates &amp; Courses</h3>
+      <div class="edu-subsection">
+        <div class="edu-label">Certificates &amp; Courses</div>
         <div class="edu-grid">
+          <!-- Certificate 1 -->
           <article class="card edu-card">
-            <div class="edu-icon" aria-hidden="true">
-              <span>📜</span>
-            </div>
-
+            <div class="edu-icon" aria-hidden="true">📄</div>
             <h3>Data Analytics Certificate</h3>
-            <div class="edu-meta">
-              Provider / Platform • 2023 • Online
-            </div>
+            <div class="meta">Provider / Platform • 2023 • Online</div>
             <ul>
               <li>Completed hands-on projects with SQL, Python, and dashboards.</li>
               <li>Focused on experimentation, A/B testing, and KPI design.</li>
@@ -863,15 +846,11 @@
             </div>
           </article>
 
+          <!-- Certificate 2 -->
           <article class="card edu-card">
-            <div class="edu-icon" aria-hidden="true">
-              <span>📊</span>
-            </div>
-
+            <div class="edu-icon" aria-hidden="true">📊</div>
             <h3>Cloud Fundamentals</h3>
-            <div class="edu-meta">
-              Cloud Provider Academy • 2022 • Online
-            </div>
+            <div class="meta">Cloud Provider Academy • 2022 • Online</div>
             <ul>
               <li>Learned core services (compute, storage, networking).</li>
               <li>Configured basic monitoring, logging, and IAM.</li>
