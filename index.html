@@ -311,27 +311,54 @@
 
     /* ===== Education grid ===== */
     .edu-subsection{
-      margin-top:16px;
+      margin-top:24px;                 /* more space under "Education" h2 */
     }
-    /* Subsection titles: same vibe as "Programming" in Skills card */
+
+    /* Subsection titles: same look as "Programming" in Skills card */
     .edu-label{
       font-size:1rem;
       font-weight:600;
       color:var(--muted);
-      margin:0 0 8px 0;   /* space above cards */
+      margin:0;                        /* no extra margin of its own */
     }
 
-    /* Two-up grid like Projects (collapses to 1 column on mobile) */
+    /* Grid: 1 column on small, MAX 2 columns on wider screens */
     .edu-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-      gap:16px;
+      grid-template-columns:1fr;       /* default = single column */
+      row-gap:24px;                    /* vertical space between rows */
+      column-gap:18px;                 /* horizontal space between cards */
+      margin-top:28px;                 /* space between label and first row */
+    }
+
+    @media (min-width: 780px){
+      .edu-grid{
+        grid-template-columns:repeat(2, minmax(0, 1fr)); /* at most 2 per row */
+      }
     }
 
     /* Make edu cards behave like experience cards */
     .edu-card{
       position:relative;
-      padding-top:40px;        /* room for the icon capsule */
+      padding:16px;
+      padding-top:40px;                /* room for the icon capsule */
+    }
+
+    /* Heading & meta inside edu cards = same as experience */
+    .edu-card h3{
+      margin:0 0 4px 0;                /* tight gap under title (like .item h3) */
+    }
+
+    .edu-card .meta{
+      color:var(--muted);
+      font-weight:600;
+      margin-bottom:8px;
+    }
+
+    /* Bullet spacing in education cards = experience cards */
+    .edu-card ul{
+      margin:8px 0 0 0;
+      padding-left:18px;               /* slight indent so bullets don't hit edge */
     }
 
     /* Icon capsule: centered on top edge like experience logos */
@@ -347,12 +374,6 @@
       place-items:center;
       background:var(--panel);
       border:2px solid var(--ring);
-    }
-
-    /* Bullet spacing in education cards = experience cards */
-    .edu-card ul{
-      margin:8px 0 0 0;        /* no extra outer left margin */
-      padding-left:18px;       /* slight indent so bullets don't touch border */
     }
 
 
