@@ -93,7 +93,7 @@
       align-items:center;
       gap:10px;
     }
-    .nav-center{
+    .{
       display:flex;
       justify-content:center;
       align-items:center;
@@ -145,7 +145,7 @@
 
     /* ===== Mobile hamburger & menu ===== */
     .menu-toggle{
-      display:none;           /* shown only on small screens */
+      display:inline-flex;           
       border:1px solid var(--ring);
       border-radius:10px;
       padding:6px 12px;
@@ -216,12 +216,7 @@
        - make theme toggle emoji-only (but keep same height)
     */
     @media (max-width:700px){
-      .nav-links{
-        display:none;
-      }
-      .menu-toggle{
-        display:inline-flex;
-      }
+      
       #themeLabel{
         display:none;          /* emoji only */
       }
@@ -557,18 +552,6 @@
           <!--
           <a class="brand" href="#top"><span class="logo">Y</span> Your Name</a>
           this is if you want your name to appear next to logo with initials-->
-        </div>
-
-        <div class="nav-center">
-          <!-- Desktop navigation buttons -->
-          <div class="nav-links" aria-label="Section navigation">
-            <a class="btn btn--ghost" href="#about"        data-scroll="#about">About</a>
-            <a class="btn btn--ghost" href="#experience" data-scroll="#experience">Experience</a>
-            <a class="btn btn--ghost" href="#volunteer"  data-scroll="#volunteer">Volunteer</a>
-            <a class="btn btn--ghost" href="#projects"   data-scroll="#projects">Projects</a>
-            <a class="btn btn--ghost" href="#skills"     data-scroll="#skills">Skills</a>
-            <a class="btn btn--ghost" href="#contact"    data-scroll="#contact">Contact</a>
-          </div>
         </div>
 
         <div class="nav-right">
