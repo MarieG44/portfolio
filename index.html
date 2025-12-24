@@ -395,20 +395,42 @@
     /* “Play” cue: small black triangle bottom-right */
     .proj-thumbnail-play{
       position:absolute;
-      right:16px;  /* <-- horizontal position, decrease to move closer to bottom right corner */
-      bottom:16px;  /* <-- vertical position, decrease to move closer to bottom right corner */
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%); /* center it */
       /*
-      put in a different corner (top left)
+          Bottom right corner
+      right:16px;  <-- horizontal position, decrease to move closer to bottom right corner 
+      bottom:16px;  <-- vertical position, decrease to move closer to bottom right corner 
+          Top left corner
       left:8px;
       top:8px;
       right:auto;
       bottom:auto;
-      */
       width:0;
       height:0;
-      border-left:20px solid rgba(0,0,0,0.9);   /* triangle width*/
-      border-top:15px solid transparent;  /* <-- triangle height (top) */
-      border-bottom:15px solid transparent;  /* <-- triangle height (bottom) */
+      border-left:20px solid rgba(0,0,0,0.55);  <-- triangle width
+      border-top:15px solid transparent; <-- triangle height (top)
+      border-bottom:15px solid transparent;  <-- triangle height (bottom)
+      */
+      width:52px;
+      height:52px;
+      background:rgba(0,0,0,0.55);  /* button fill color */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:12px;
+    }
+
+    /* Triangle inside the button */
+    .proj-thumb-play::before{
+      content:"";
+      width:0;
+      height:0;
+      border-left:18px solid #ffffff;     /* triangle color */
+      border-top:11px solid transparent;
+      border-bottom:11px solid transparent;
+      margin-left:3px;                    /* optical centering */
     }
 
     /* ===== Video overlay popup ===== */
