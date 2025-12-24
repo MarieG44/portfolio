@@ -341,7 +341,7 @@
     .edu-card{
       position:relative;
       padding:16px;
-      padding-top:40px;                /* room for the icon capsule */
+      padding-top:50px;                /* so the title doesn't crash into logo */
     }
 
     /* Heading & meta inside edu cards = same as experience */
@@ -367,13 +367,20 @@
       top:0;
       left:50%;
       transform:translate(-50%, -50%);
-      width:46px;
-      height:46px;
+      width:55px;
+      height:55px;
       border-radius:12px;
       display:grid;
       place-items:center;
       background:var(--panel);
       border:2px solid var(--ring);
+    }
+
+    
+    .edu-icon img{ /*control image size inside logo box*/
+      width:70%;
+      height:70%;
+      object-fit:contain;
     }
 
 
