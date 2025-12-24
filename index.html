@@ -308,6 +308,58 @@
       padding-top:40px; /* push content down so logo doesn't collide with title */
     }
 
+
+    /* ===== Education grid (non-timeline) ===== */
+    .edu-group{
+      margin-top:16px;
+    }
+
+    .edu-subtitle{
+      margin:0 0 8px 0;
+      font-size:1rem;
+      font-weight:600;
+    }
+
+    /* Two-card grid, same feel as Projects */
+    .edu-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:16px;
+    }
+
+    /* Re-use .card styling but add space for the icon “tab” */
+    .edu-card{
+      position:relative;
+      padding-top:32px;         /* room for the floating icon */
+    }
+
+    /* Little icon that “sits” on top of the card */
+    .edu-icon{
+      position:absolute;
+      top:-22px;
+      left:32px;
+      width:44px;
+      height:44px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background:var(--panel);
+      border:1px solid var(--ring);
+    }
+
+    /* Slightly smaller for emojis / icons inside */
+    .edu-icon span{
+      font-size:1.4rem;
+    }
+
+    /* Make the meta line look like other muted lines */
+    .edu-meta{
+      color:var(--muted);
+      font-weight:600;
+      margin-bottom:8px;
+    }
+
+
     /* MOBILE TIMELINE LAYOUT – make left & right items look the same */
     @media (max-width: 900px){
       .timeline::before{left:20px}
@@ -738,63 +790,80 @@
     <section id="education" class="section" aria-labelledby="edu-title">
       <h2 id="edu-title">Education</h2>
 
-      <div class="timeline" aria-label="Education timeline">
-        <!-- Degree 1 -->
-        <div class="item" data-side="left">
-          <div class="dot" aria-hidden="true">🎓</div>
-          <div class="card">
+      <!-- Degrees -->
+      <div class="edu-group">
+        <h3 class="edu-subtitle">Degrees</h3>
+        <div class="edu-grid">
+          <article class="card edu-card">
+            <div class="edu-icon" aria-hidden="true">
+              <span>🎓</span>
+            </div>
+
             <h3>B.Sc. in Computer Science</h3>
-            <div class="meta">University Name • 2021 – 2025 • City</div>
+            <div class="edu-meta">
+              University Name • 2021–2025 • City
+            </div>
             <ul>
               <li>Coursework in algorithms, databases, and machine learning.</li>
               <li>Capstone project: built a full-stack analytics dashboard.</li>
               <li>GPA: 3.8/4.0 • Dean’s List (multiple terms).</li>
             </ul>
-            <div class="badges" aria-label="Highlights">
+            <div class="badges">
               <span class="badge">Honours</span>
               <span class="badge">Dean’s List</span>
               <span class="badge">Capstone Project</span>
             </div>
-          </div>
+          </article>
         </div>
+      </div>
 
-        <!-- Certificate 1 -->
-        <div class="item" data-side="right">
-          <div class="dot" aria-hidden="true">📜</div>
-           <div class="card">
+      <!-- Certificates & Courses -->
+      <div class="edu-group">
+        <h3 class="edu-subtitle">Certificates &amp; Courses</h3>
+        <div class="edu-grid">
+          <article class="card edu-card">
+            <div class="edu-icon" aria-hidden="true">
+              <span>📜</span>
+            </div>
+
             <h3>Data Analytics Certificate</h3>
-            <div class="meta">Provider / Platform • 2023 • Online</div>
+            <div class="edu-meta">
+              Provider / Platform • 2023 • Online
+            </div>
             <ul>
               <li>Completed hands-on projects with SQL, Python, and dashboards.</li>
               <li>Focused on experimentation, A/B testing, and KPI design.</li>
             </ul>
-            <div class="badges" aria-label="Certificate skills">
+            <div class="badges">
               <span class="badge">SQL</span>
               <span class="badge">Python</span>
               <span class="badge">Dashboards</span>
             </div>
-          </div>
-        </div>
+          </article>
 
-        <!-- Certificate 2 (optional) -->
-        <div class="item" data-side="left">
-          <div class="dot" aria-hidden="true">📚</div>
-          <div class="card">
+          <article class="card edu-card">
+            <div class="edu-icon" aria-hidden="true">
+              <span>📊</span>
+            </div>
+
             <h3>Cloud Fundamentals</h3>
-            <div class="meta">Cloud Provider Academy • 2022 • Online</div>
+            <div class="edu-meta">
+              Cloud Provider Academy • 2022 • Online
+            </div>
             <ul>
               <li>Learned core services (compute, storage, networking).</li>
               <li>Configured basic monitoring, logging, and IAM.</li>
             </ul>
-            <div class="badges" aria-label="Cloud skills">
+            <div class="badges">
               <span class="badge">Cloud</span>
               <span class="badge">IAM</span>
-               <span class="badge">Monitoring</span>
+              <span class="badge">Monitoring</span>
             </div>
-           </div>
+          </article>
         </div>
       </div>
     </section>
+
 
     <!-- ===== SKILLS ===== -->
     <section id="skills" class="section" aria-labelledby="skills-title">
