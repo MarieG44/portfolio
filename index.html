@@ -140,7 +140,7 @@
       height:34px;          /* same height as logo & menu */
       line-height:1;
     }
-    .toggle:hover #themeLabel{
+    .toggle:hover #{
       text-decoration:underline;
     }
 
@@ -215,7 +215,7 @@
        - hide text label on theme toggle
     */
     @media (max-width:700px){
-      #themeLabel{
+      #{
         display:none;          /* emoji only */
       }
       .toggle{
@@ -670,7 +670,7 @@
         <div class="nav-right">
           <button id="themeToggle" type="button" class="toggle" aria-pressed="false" title="Toggle theme">
             <span id="themeIcon">☀️</span>
-            <!-- <span id="themeIcon">☀️</span><span id="themeLabel">Light Mode</span> this is if you want text next to light toggle emoji -->
+            <!-- <span id="themeIcon">☀️</span><span id="">Light Mode</span> this is if you want text next to light toggle emoji -->
           </button>
 
           <!-- Hamburger menu button (desktop + mobile) -->
@@ -1088,12 +1088,14 @@
       if(mode==='light'){
         root.classList.add('light');
         icon.textContent='☀️';
-        label.textContent='Light Mode';
+        //label.textContent='Light Mode';
+        toggleBtn.setAttribute('title', 'Switch to dark mode');
         toggleBtn.setAttribute('aria-pressed','true');
       } else {
         root.classList.remove('light');
         icon.textContent='🌙';
-        label.textContent='Dark Mode';
+        //label.textContent='Dark Mode';
+        toggleBtn.setAttribute('title', 'Switch to light mode');
         toggleBtn.setAttribute('aria-pressed','false');
       }
       localStorage.setItem('theme', mode);
