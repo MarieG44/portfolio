@@ -330,7 +330,7 @@
     /* Grid: 1 column on small, MAX 2 columns on wider screens */
     .edu-grid{
       display:grid;
-      grid-template-columns:repeat(2, minmax(260px, 1fr));       /* default = single column */
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));       /* default = single column */
       row-gap:35px;                    /* vertical space between rows */
       column-gap:18px;                 /* horizontal space between cards */
       margin-top:50px;                 /* space AFTER the title, before the cards */
