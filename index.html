@@ -550,6 +550,46 @@
       line-height:1.3;    /* tighter line height than 1.6 */
     }
 
+    /* Small icon buttons at bottom of cards */
+    .card-links{
+      margin-top:10px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .card-links a{
+      text-decoration:none;      /* remove underline on icons */
+    }
+
+    /* Circular icon button */
+    .icon-circle{
+      --icon-size:30px;          /* tweak this to make them bigger/smaller */
+
+      width:var(--icon-size);
+      height:var(--icon-size);
+      border-radius:999px;
+      border:1px solid var(--ring);
+      background:var(--panel);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:var(--shadow);
+      font-size:1rem;            /* size of emoji / glyph inside */
+      color:var(--text);
+      transition:
+        background 150ms ease,
+        transform 150ms ease,
+        box-shadow 150ms ease;
+    }
+
+    .icon-circle:hover{
+      background:color-mix(in oklab, var(--panel) 80%, transparent);
+      transform:translateY(-1px);
+      text-decoration:none;
+    }
+
+
     /* ===== Project meta ===== */
     .proj-meta{margin:6px 0 8px 0; color:var(--muted); font-weight:600}
     .proj-meta strong{color:inherit; font-weight:700}
@@ -764,6 +804,24 @@
             <p style="margin-top:10px">
               <a class="btn btn--quiet" href="https://instagram.com/club" target="_blank" rel="noopener">Source ↗</a>
             </p>
+            <div class="card-links" aria-label="Links for this role">
+              <!-- Instagram / socials -->
+              <a class="icon-circle"
+                 href="https://instagram.com/club"
+                 target="_blank" rel="noopener"
+                 title="Instagram">
+                <span aria-hidden="true">📸</span>
+                <span class="visually-hidden">Open club Instagram</span>
+              </a>
+              <!-- Club website -->
+              <a class="icon-circle"
+                 href="https://club.example.com"
+                 target="_blank" rel="noopener"
+                 title="Club website">
+                <span aria-hidden="true">🌐</span>
+                <span class="visually-hidden">Open club website</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
