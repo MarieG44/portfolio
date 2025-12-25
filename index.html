@@ -178,6 +178,10 @@
       padding:16px 24px 24px;
       display:none;
       z-index:30;                           /* above sticky header (which is 20) */
+
+      /* limit height and allow scrolling inside */
+      max-height:calc(100vh - var(--header-height, 72px) - 16px);
+      overflow-y:auto;
     }
     .mobile-menu.open{
       display:block;
