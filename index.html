@@ -564,19 +564,24 @@
 
     /* Circular icon button */
     .icon-circle{
-      --icon-size:40px;          /* tweak this to make them bigger/smaller */
+      --icon-size:40px;          /* tweak this to make circle bigger/smaller */
 
       width:var(--icon-size);
       height:var(--icon-size);
       border-radius:999px;
       border:1px solid var(--ring);
       background:var(--panel);
+      
       display:inline-flex;
       align-items:center;
       justify-content:center;
+
+      padding:0;                    /* no extra padding */
+      line-height:0;                /* kill inline text line box */
+
       box-shadow:var(--shadow);
-      font-size:1rem;            /* size of emoji / glyph inside */
-      color:var(--text);
+      /*font-size:1rem;            size of emoji / glyph inside
+      color:var(--text);*/
       transition:
         background 150ms ease,
         transform 150ms ease,
@@ -591,10 +596,10 @@
 
     /* Make image icons fit nicely inside the circle */
     .icon-circle img{
-      width:25px;          /* change these to adjust icon size */
-      height:25px;
+      width:35px;          /* change these to adjust icon size */
+      height:35px;
       object-fit:contain;
-      display:block;
+      display:block; /* remove baseline gap */
     }
 
 
