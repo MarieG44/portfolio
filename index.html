@@ -286,7 +286,7 @@
       position:absolute;
       top:22px;
       left:50%;
-      transform:(-50%,-50%);
+      transform:translate(-50%,-50%);
       background:var(--panel);
       border:2px solid var(--ring);
       width:55px; /*logo box sizes*/
@@ -373,7 +373,7 @@
       position:absolute;
       top:0;
       left:50%;
-      transform:(-50%, -50%);
+      transform:translate(-50%, -50%);
       width:55px;  /*size of logo*/
       height:55px;
       border-radius:12px;
@@ -462,7 +462,7 @@
       position:absolute;
       top:50%;
       left:50%;
-      transform:(-50%, -50%);
+      transform:translate(-50%, -50%);
       width:52px;
       height:52px;
       background:rgba(0,0,0,0.55);  /* button fill color */
@@ -590,7 +590,7 @@
 
     .icon-circle:hover{
       background:color-mix(in oklab, var(--panel) 80%, transparent);
-      transform:translateY(10px); /* push image up or down */
+      transform:translateY(-1px);
       text-decoration:none;
     }
 
@@ -600,6 +600,7 @@
       height:25px;
       object-fit:contain;
       display:block; /* remove baseline gap */
+      transform:translateY(1.5px);  /* push image up or down */
     }
 
 
