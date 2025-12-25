@@ -473,8 +473,8 @@
     /* Hover effect: slight zoom + darken (desktop / hover devices only) */
     @media (hover:hover){
       .proj-thumbnail-wrapper:hover img{
-        transform:scale(1.02);
-        filter:brightness(0.9);
+        transform:none;
+        filter:none;
       }
     }
 
@@ -491,6 +491,19 @@
       align-items:center;
       justify-content:center;
       border-radius:12px;
+      transition:
+          background 150ms ease,
+          transform 150ms ease,
+          box-shadow 150ms ease;
+    }
+
+    /* Hover effect on the play button */
+    @media (hover:hover){
+      .proj-thumbnail-play:hover{
+        background:rgba(0,0,0,0.8);              /* darker */
+        transform:translate(-50%, -50%) scale(1.06); /* slight pop */
+        box-shadow:0 4px 10px rgba(0,0,0,0.35);
+      }
     }
 
     .proj-thumbnail-play::before{
@@ -644,14 +657,12 @@
     }
     .project-image-link img{
       display: block;
-      transition:
-        transform 150ms ease,
-        filter 150ms ease;
+      transition:none;
     }
     .project-image-link:hover img,
     .project-image-link:focus-visible img{
-      transform:scale(1.03);
-      filter:brightness(1.05);
+      transform:none;
+      filter:none;
     }
     
     /* ===== Skills & Contact styling ===== */
@@ -683,6 +694,7 @@
             <a class="btn btn--ghost" href="#experience" data-scroll="#experience">Experience</a>
             <a class="btn btn--ghost" href="#volunteer"  data-scroll="#volunteer">Volunteer</a>
             <a class="btn btn--ghost" href="#projects"   data-scroll="#projects">Projects</a>
+            <a class="btn btn--ghost" href="#education"   data-scroll="#education">Education</a>
             <a class="btn btn--ghost" href="#skills"     data-scroll="#skills">Skills</a>
             <a class="btn btn--ghost" href="#contact"    data-scroll="#contact">Contact</a>
           </div>
@@ -714,6 +726,7 @@
       <a href="#experience" data-scroll="#experience">Experience</a>
       <a href="#volunteer"  data-scroll="#volunteer">Volunteer</a>
       <a href="#projects"   data-scroll="#projects">Projects</a>
+      <a href="#education"   data-scroll="#education">Education</a>
       <a href="#skills"     data-scroll="#skills">Skills</a>
       <a href="#contact"    data-scroll="#contact">Contact</a>
     </nav>
