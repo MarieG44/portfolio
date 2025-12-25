@@ -163,7 +163,7 @@
 
     .mobile-menu{
       position:fixed;
-      top:64px;                             /* just under the header */
+      top:var(--header-height, 72px); /* fallback 72px */
       /*right:24px;                            same padding as .container → lines up with ☰ */
       right:1.5rem;                   /* sits under the hamburger on small screens */
       left:auto;                            /* no longer full-width */
@@ -1224,6 +1224,17 @@
         }
       });
     }
+
+    // menu’s top edge will always sit exactly flush with the bottom edge of the header
+    const header = document.querySelector('header');
+    function updateHeaderHeight(){
+      if (!header) return;
+      const h = header.offsetHeight;
+      document.documentElement.style.setProperty('--header-height', h + 'px');
+    }
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+    
   </script>
 </body>
 </html>
