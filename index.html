@@ -564,7 +564,7 @@
 
     /* Circular icon button */
     .icon-circle{
-      --icon-size:30px;          /* tweak this to make them bigger/smaller */
+      --icon-size:40px;          /* tweak this to make them bigger/smaller */
 
       width:var(--icon-size);
       height:var(--icon-size);
@@ -587,6 +587,14 @@
       background:color-mix(in oklab, var(--panel) 80%, transparent);
       transform:translateY(-1px);
       text-decoration:none;
+    }
+
+    /* Make image icons fit nicely inside the circle */
+    .icon-circle img{
+      width:25px;          /* change these to adjust icon size */
+      height:25px;
+      object-fit:contain;
+      display:block;
     }
 
 
@@ -809,17 +817,17 @@
               <a class="icon-circle"
                  href="https://instagram.com/club"
                  target="_blank" rel="noopener"
-                 title="Instagram">
-                <span aria-hidden="true">📸</span>
-                <span class="visually-hidden">Open club Instagram</span>
+                 rel="noopener"
+                 aria-label="Club Instagram">
+                <img src="images/instagram.png" alt="">
               </a>
               <!-- Club website -->
               <a class="icon-circle"
                  href="https://club.example.com"
                  target="_blank" rel="noopener"
-                 title="Club website">
-                <span aria-hidden="true">🌐</span>
-                <span class="visually-hidden">Open club website</span>
+                 rel="noopener"
+                 aria-label="Club Website">
+                <img src="images/website.png" alt="">
               </a>
             </div>
           </div>
