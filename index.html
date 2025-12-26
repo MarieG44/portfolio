@@ -406,13 +406,6 @@
       
       place-items:center;
       display:grid;
-
-      /* smooth hover animation */
-      transition:
-        transform 150ms ease,
-        box-shadow 150ms ease,
-        border-color 150ms ease,
-        background 150ms ease;
     }
 
     
@@ -438,13 +431,6 @@
 
     /* Hover effect for the logo capsule */
     @media (hover:hover){
-      .edu-icon:hover{
-        transform:translate(-50%, -50%) translateY(-2px); /* tiny lift */
-        background:color-mix(in oklab, var(--panel) 85%, transparent);
-        box-shadow:0 4px 10px rgba(0,0,0,0.35);
-        border-color:color-mix(in oklab, var(--ring) 75%, #ffffff);
-      }
-
       .edu-icon:hover img{
         transform:scale(1.05);
         filter:brightness(1.05);
@@ -665,7 +651,7 @@
 
     .icon-circle:hover{
       background:color-mix(in oklab, var(--panel) 80%, transparent);
-      transform:translateY(-1px);
+      /*transform:translateY(-1px);*/
       text-decoration:none;
     }
 
