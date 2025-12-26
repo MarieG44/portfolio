@@ -634,15 +634,17 @@
       background:var(--panel);
       
       display:inline-flex;
-      align-items:center;
-      justify-content:center;
+      /*align-items:center;
+      justify-content:center;*/
+      place-items:center;   /* centers content exactly like .edu-icon */
 
       padding:0;                    /* no extra padding */
-      line-height:0;                /* kill inline text line box */
+      /*line-height:0;                 kill inline text line box */
 
-      box-shadow:var(--shadow);
+      
       /*font-size:1rem;            size of emoji / glyph inside
       color:var(--text);*/
+      box-shadow:var(--shadow);
       transition:
         background 150ms ease,
         transform 150ms ease,
@@ -661,7 +663,6 @@
       height:15px;
       object-fit:contain;
       display:block; /* remove baseline gap */
-      transform:translateY(1px);  /* push image up or down */
     }
 
 
