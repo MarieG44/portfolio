@@ -395,15 +395,28 @@
       top:0;
       left:50%;
       transform:translate(-50%, -50%);
-      width:55px;  /*size of logo*/
+      
+      width:55px;  /*size of logo box*/
       height:55px;
+      padding:4px;
+      
       border-radius:12px;
-      display:grid;
-      place-items:center;
       background:var(--panel);
       border:2px solid var(--ring);
+      
+      place-items:center;
+      display:grid;
     }
 
+    
+    /* Make the link fill the whole capsule */
+    .edu-icon a{
+      display:grid;
+      place-items:center;
+      width:100%;
+      height:100%;
+      text-decoration:none;
+    }
     
     .edu-icon img{ /*control image size inside logo box*/
       width:70%;
@@ -918,7 +931,9 @@
           <!-- Degree 1 -->
           <article class="card edu-card">
             <div class="edu-icon">
-              <img src="images/microsoft.png" alt="Computer science degree icon">
+              <a href="https://university.example.com" target="_blank" rel="noopener">
+                <img src="images/microsoft.png" alt="">
+              </a>
             </div>
             <h3>B.Sc. in Computer Science</h3>
             <div class="meta">University Name • 2021–2025 • City</div>
