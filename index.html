@@ -633,13 +633,13 @@
       border:1px solid var(--ring);
       background:var(--panel);
       
-      display:inline-flex;
+      display:grid;
       /*align-items:center;
       justify-content:center;*/
       place-items:center;   /* centers content exactly like .edu-icon */
 
       padding:0;                    /* no extra padding */
-      /*line-height:0;                 kill inline text line box */
+      line-height:0;                 kill inline text line box 
 
       
       /*font-size:1rem;            size of emoji / glyph inside
@@ -653,7 +653,7 @@
 
     .icon-circle:hover{
       background:color-mix(in oklab, var(--panel) 80%, transparent);
-      /*transform:translateY(-1px);*/
+      transform:translateY(-1px);
       text-decoration:none;
     }
 
@@ -663,6 +663,8 @@
       height:15px;
       object-fit:contain;
       display:block; /* remove baseline gap */
+      justify-self:center;             /* extra “belt & suspenders” centering */
+      align-self:center;
     }
 
 
