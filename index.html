@@ -1216,6 +1216,7 @@
       projClose.addEventListener('click', closeProjectVideo);
     }
 
+    /*
     // Click outside the video (on the dark backdrop)
     if(projOverlay){
       projOverlay.addEventListener('click', (e) => {
@@ -1223,60 +1224,9 @@
           closeProjectVideo();
         }
       });
-    }
+    }*/
 
-    const menuToggle      = document.getElementById('menuToggle');
-    const mobileMenu      = document.getElementById('mobileMenu');
-    const mobileMenuClose = document.getElementById('mobileMenuClose');
-
-    function openMenu() {
-      mobileMenu.classList.add('open');
-      menuToggle.setAttribute('aria-expanded', 'true');
-    }
-
-    function closeMenu() {
-      mobileMenu.classList.remove('open');
-      menuToggle.setAttribute('aria-expanded', 'false');
-    }
-
-    // Existing handlers (you likely already have something like this)
-    /*
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation(); // so this click doesn't trigger the outside listener
-      const isOpen = mobileMenu.classList.contains('open');
-      if (isOpen) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-    });
-
-    mobileMenuClose.addEventListener('click', (e) => {
-      e.stopPropagation();
-      closeMenu();
-    });
-    */
-
-    // ⬇️ NEW: close menu when clicking *outside* it
-    document.addEventListener('click', (e) => {
-      // if menu isn't open, do nothing
-      if (!mobileMenu.classList.contains('open')) return;
-
-      const clickInsideMenu  = mobileMenu.contains(e.target);
-      const clickOnToggle    = menuToggle.contains(e.target);
-
-      // Only close if the click is NOT in the menu and NOT on the hamburger
-      if (!clickInsideMenu && !clickOnToggle) {
-        closeMenu();
-      }
-    });
-
-    // Optional: prevent clicks inside menu from bubbling up (extra safety)
-    mobileMenu.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-
-    // Menu’s top edge will always sit exactly flush with the bottom edge of the header
+    // menu’s top edge will always sit exactly flush with the bottom edge of the header
     const header = document.querySelector('header');
     function updateHeaderHeight(){
       if (!header) return;
