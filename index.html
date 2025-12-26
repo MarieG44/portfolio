@@ -456,7 +456,8 @@
 
     /* ===== Grid (Projects) ===== */
     .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px}
-    .card img{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:10px; margin-bottom:10px}
+    /*.card img{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:10px; margin-bottom:10px}*/
+    .project-card img{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:10px; margin-bottom:10px}
 
 
     /* ===== Project video thumbnails (test 2) ===== */
@@ -877,7 +878,7 @@
     <section id="projects" class="section" aria-labelledby="proj-title">
       <h2 id="proj-title">Projects</h2>
       <div class="grid">
-        <article class="card">
+        <article class="card project-card">
           <!-- CLICKABLE THUMBNAIL BUTTON -->
           <button class="proj-thumbnail-button"
                   type="button"
@@ -901,7 +902,7 @@
           <div class="badges"><span class="badge">Python</span><span class="badge">BigQuery</span><span class="badge">dbt</span></div>
           
         </article>
-        <article class="card">
+        <article class="card project-card">
           <img src="images/connect-four.png" alt="Mobile app mockup" />
           <h3>EmotiLog</h3>
           <div class="proj-meta">Hackathon • Jan 2025 • Vancouver, BC</div>
@@ -909,7 +910,7 @@
           <div class="badges"><span class="badge">Kotlin</span><span class="badge">TFLite</span></div>
         </article>
         
-        <article class="card">
+        <article class="card project-card">
           <img src="images/connect-four.png" alt="Notebook with code" />
           <h3>PoE2 Solver</h3>
           <div class="proj-meta">Coursework • 2025 • Remote</div>
