@@ -705,7 +705,54 @@
       font-weight:600;
       margin:0 0 8px 0;
     }
+
+    
+    .contact-form{
+      display:grid;
+      gap:14px;
+    }
+
+    .field{
+      display:grid;
+      gap:6px;
+    }
+
+    .field-label{
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea{
+      width:100%;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid var(--ring);
+      background:color-mix(in oklab, var(--panel) 70%, transparent);
+      color:var(--text);
+      font:inherit;
+    }
+
+    .contact-form textarea{
+      resize:vertical;
+      min-height:140px;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus{
+      outline:2px solid color-mix(in oklab, var(--ring) 70%, transparent);
+      outline-offset:2px;
+    }
+
+
   </style>
+
+
+
+
+
+  
 </head>
 <body>
   <header>
@@ -1063,7 +1110,7 @@
     </section>
 
     <!-- ===== CONTACT ===== -->
-    <section id="contact" class="section" aria-labelledby="contact-title">
+    <!--<section id="contact" class="section" aria-labelledby="contact-title">
       <h2 id="contact-title">Contact</h2>
       <div class="card">
         <ul style="list-style:none; padding:0; margin:0">
@@ -1072,7 +1119,44 @@
           <li><strong>GitHub:</strong> <a href="https://github.com/yourname" target="_blank" rel="noopener">@yourname</a></li>
         </ul>
       </div>
+    </section>-->
+
+
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+
+      <div class="card">
+        <form
+          class="contact-form"
+          action="https://formspree.io/f/mojnbddk"
+          method="POST"
+        >
+          <label class="field">
+            <span class="field-label">Name</span>
+            <input name="name" type="text" autocomplete="name" required>
+          </label>
+
+          <label class="field">
+            <span class="field-label">Email</span>
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+
+          <label class="field">
+            <span class="field-label">Message</span>
+            <textarea name="message" rows="6" required></textarea>
+          </label>
+
+          <!-- simple anti-spam honeypot (leave hidden) -->
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+          <input type="hidden" name="_subject" value="Write message here">
+          <input type="hidden" name="_redirect" value="https://username.github.io/repo/#contact">
+
+          <button class="btn btn--ghost" type="submit">Send message</button>
+        </form>
+      </div>
     </section>
+    
   </main>
 
   <!-- Project video overlay -->
