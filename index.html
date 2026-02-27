@@ -745,6 +745,12 @@
       outline-offset:2px;
     }
 
+    .form-note{
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
 
   </style>
 
@@ -1126,7 +1132,34 @@
       <h2 id="contact-title">Contact</h2>
 
       <div class="card">
-        <form
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/mojnbddk" method="POST">
+          <label class="field">
+            <span class="field-label">Name</span>
+            <input name="name" type="text" autocomplete="name" required>
+          </label>
+
+          <label class="field">
+            <span class="field-label">Email</span>
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+
+          <label class="field">
+            <span class="field-label">Message</span>
+            <textarea name="message" rows="6" required></textarea>
+          </label>
+
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+
+          <button class="btn btn--ghost" type="submit">Send Message</button>
+
+          <p id="contactSuccess" class="form-note" hidden>
+            ✅ Message sent successfully!
+          </p>
+          <p id="contactError" class="form-note" hidden>
+            ❌ Something went wrong. Please try again.
+          </p>
+        </form>
+        <!--<form
           class="contact-form"
           action="https://formspree.io/f/mojnbddk"
           method="POST"
@@ -1146,14 +1179,14 @@
             <textarea name="message" rows="6" required></textarea>
           </label>
 
-          <!-- simple anti-spam honeypot (leave hidden) -->
+          
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
           <input type="hidden" name="_subject" value="Write message here">
           <input type="hidden" name="_redirect" value="https://marieg11.github.io/portfolio-website/#contact">
 
           <button class="btn btn--ghost" type="submit">Send Message</button>
-        </form>
+        </form>-->
       </div>
     </section>
     
@@ -1319,6 +1352,40 @@
     }
     updateHeaderHeight();
     window.addEventListener('resize', updateHeaderHeight);
+
+    // ===== Contact form: submit to Formspree without leaving the page =====
+    const contactForm = document.getElementById('contactForm');
+    const contactSuccess = document.getElementById('contactSuccess');
+    const contactError = document.getElementById('contactError');
+
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // hide old messages
+        contactSuccess.hidden = true;
+        contactError.hidden = true;
+
+        const formData = new FormData(contactForm);
+
+        try {
+          const res = await fetch(contactForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+
+          if (res.ok) {
+            contactForm.reset();              // clears the fields
+            contactSuccess.hidden = false;    // show success message
+          } else {
+            contactError.hidden = false;
+          }
+        } catch (err) {
+          contactError.hidden = false;
+        }
+      });
+    }
     
   </script>
 </body>
