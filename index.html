@@ -744,6 +744,9 @@
       outline:2px solid color-mix(in oklab, var(--ring) 70%, transparent);
       outline-offset:2px;
     }
+    .contact-form textarea:focus{
+      background: color-mix(in oklab, var(--panel) 70%, transparent);
+    }
 
     .form-note{
       margin: 8px 0 0;
@@ -1132,15 +1135,28 @@
       <h2 id="contact-title">Contact</h2>
 
       <div class="card">
-        <form id="contactForm" class="contact-form" action="https://formspree.io/f/mojnbddk" method="POST">
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/mojnbddk" method="POST" autocomplete="off">
+          
           <label class="field">
-            <span class="field-label">Name</span>
-            <input name="name" type="text" autocomplete="name" required>
+              <span class="field-label">Name</span>
+              <input
+                name="name"
+                type="text"
+                autocomplete="off"
+                autocapitalize="words"
+                spellcheck="false"
+                required>
           </label>
 
           <label class="field">
-            <span class="field-label">Email</span>
-            <input name="email" type="email" autocomplete="email" required>
+              <span class="field-label">Email</span>
+              <input
+                name="email"
+                type="email"
+                autocomplete="off"
+                autocapitalize="none"
+                spellcheck="false"
+                required>
           </label>
 
           <label class="field">
