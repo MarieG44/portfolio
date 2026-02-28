@@ -346,6 +346,10 @@
       padding-top:16px; /* push content down so logo doesn't collide with title */
     }
 
+    .timeline .dot{
+      display:none !important;
+    }
+
 
     /* ===== Education grid ===== */
     .edu-subsection{
@@ -459,21 +463,22 @@
     @media (max-width: 900px){
       .timeline::before{left:20px}
       .item{
-        width:100%;
+        width:100% !important;
         left:0 !important;
-        padding:14px 14px 14px 48px; /*control space between logo and card*/
+        padding:14px 14px 14px 48px !important; /* same for all */
       }
-      /*
+      
       .item[data-side="left"],
       .item[data-side="right"]{
-        padding-left:34px; control space between logo and card
-        padding-right:14px;
-      }*/
+        /*padding-left:34px; control space between logo and card
+        padding-right:14px;*/
+        padding:14px 14px 14px 48px !important; /* override side-specific */
+      }
       .dot{left:20px}
       /* cards just sit to the right; no extra top padding needed */
-      .timeline .card{
+      /*.timeline .card{
         margin-left:0;
-      }
+      }*/
     }
     
     .dot a{
@@ -849,6 +854,26 @@
     }
     .card-header .meta{
       margin:0 0 8px 0;
+    }
+
+    .card-header{
+      display:flex;
+      gap:14px;
+      align-items:center;      /* centers logo with first line of text */
+    }
+
+    .card-head-text{
+      min-width:0;             /* critical: allows wrapping in flex layouts */
+      flex:1;
+    }
+
+    .card-header h3{
+      margin:0 0 4px 0;
+    }
+
+    .card-header .meta{
+      margin:0;
+      display:block;           /* ensure it stays on its own line */
     }
 
 
