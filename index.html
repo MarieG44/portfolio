@@ -303,21 +303,38 @@
     }
     .item[data-side="left"]{left:0; padding-right:28px}
     .item[data-side="right"]{left:50%; padding-left:28px}
-    .dot{
+    /*.dot{
       position:absolute;
       top:22px;
       left:50%;
       transform:translate(-50%,-50%);
       background:var(--panel);
       border:2px solid var(--ring);
-      width:55px; /*logo box sizes*/
+      width:55px; logo box sizes
       height:55px;
       border-radius:12px;
       display:grid;
       place-items:center;
       box-shadow:var(--shadow);
       z-index:2;
+    }*/
+
+    
+    /* ===== Timeline dot (no logo anymore) ===== */
+    .dot{
+      position:absolute;
+      top:22px;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:14px;
+      height:14px;
+      border-radius:999px;
+      background:var(--panel);
+      border:2px solid var(--ring);
+      z-index:2;
     }
+
+    
     .dot img{width:40px; height:40px} /*logo sizes*/
 
     .item .card{
@@ -326,7 +343,7 @@
       position:relative;
     }
     .timeline .card{
-      padding-top:40px; /* push content down so logo doesn't collide with title */
+      padding-top:16px; /* push content down so logo doesn't collide with title */
     }
 
 
@@ -444,14 +461,19 @@
       .item{
         width:100%;
         left:0 !important;
-        padding:14px 14px 14px 34px; /*control space between logo and card*/
+        padding:14px 14px 14px 48px; /*control space between logo and card*/
       }
+      /*
       .item[data-side="left"],
       .item[data-side="right"]{
-        padding-left:34px; /*control space between logo and card*/
+        padding-left:34px; control space between logo and card
         padding-right:14px;
-      }
+      }*/
       .dot{left:20px}
+      /* cards just sit to the right; no extra top padding needed */
+      .timeline .card{
+        margin-left:0;
+      }
     }
     
     .dot a{
@@ -772,6 +794,64 @@
     }
 
 
+
+
+
+
+
+
+
+
+    /* ===== Shared card header (timeline + education) ===== */
+    .card-header{
+      display:flex;
+      gap:14px;
+      align-items:flex-start; /* logo aligns with title nicely */
+    }
+
+    .card-logo{
+      width:55px;
+      height:55px;
+      border-radius:12px;
+      background:var(--panel);
+      border:2px solid var(--ring);
+      display:grid;
+      place-items:center;
+      flex:0 0 55px;
+    }
+
+    .card-logo a{
+      width:100%;
+      height:100%;
+      display:grid;
+      place-items:center;
+      text-decoration:none;
+    }
+
+    .card-logo img{
+      width:40px;
+      height:40px;
+      object-fit:contain;
+      transition: transform 150ms ease, filter 150ms ease;
+    }
+
+    /* keep your hover effect */
+    @media (hover:hover){
+      .card-logo:hover img{
+        transform:scale(1.05);
+        filter:brightness(1.05);
+      }
+    }
+
+    /* Optional: tighten spacing under title/meta inside header */
+    .card-header h3{
+      margin:0 0 4px 0;
+    }
+    .card-header .meta{
+      margin:0 0 8px 0;
+    }
+
+
   </style>
 
 
@@ -858,29 +938,38 @@
 
       <div class="timeline" aria-label="Professional timeline">
         <div class="item" data-side="left">
-          <div class="dot"> 
-            <a href="https://www.microsoft.com" target="_blank" rel="noopener" aria-label="Microsoft">
-              <img alt="Microsoft logo" src="images/microsoft.png">
-            </a>
-          </div>
+          <div class="dot" aria-hidden="true"></div>
           <div class="card">
-            <h3>Software Engineer</h3>
-            <div class="meta">
-              <a href="https://www.microsoft.com" target="_blank" rel="noopener">Company</a> • May–Aug 2025 • Vancouver, BC
+            <div class="card-header">
+              <div class="card-logo">
+                <a href="https://www.company.com" target="_blank" rel="noopener">
+                  <img src="images/logo.png" alt="Company logo">
+                </a>
+              </div>
+
+              <div class="card-head-text">
+                <h3>Software Engineer</h3>
+                <div class="meta">Company • May–Aug 2025 • Vancouver, BC</div>
+              </div>
             </div>
+
             <ul>
               <li>Built feature X that improved Y by Z% across N users.</li>
-              <li>Partnered with PMs to define metrics &amp; shipped A/B experiments.</li>
+              <li>Partnered with PMs to define metrics & shipped A/B experiments.</li>
               <li>Presented results to leadership; upstreamed components to design system.</li>
             </ul>
-            <div class="badges" aria-label="Role skills">
-              <span class="badge">Python</span><span class="badge">React</span><span class="badge">A/B Testing</span><span class="badge">SQL</span>
+
+            <div class="badges">
+              <span class="badge">Python</span>
+              <span class="badge">React</span>
+              <span class="badge">A/B Testing</span>
+              <span class="badge">SQL</span>
             </div>
           </div>
         </div>
 
         <div class="item" data-side="right">
-          <div class="dot" aria-hidden="true"><img alt="Company" src="images/microsoft.png"></div>
+          <div class="dot" aria-hidden="true"></div>
           <div class="card">
             <h3>Software Engineering Intern</h3>
             <div class="meta">Company • 2024 • Remote</div>
@@ -895,7 +984,7 @@
         </div>
 
         <div class="item" data-side="left">
-          <div class="dot" aria-hidden="true"><img alt="Company" src="images/microsoft.png"></div>
+          <div class="dot" aria-hidden="true"></div>
           <div class="card">
             <h3>Business Analyst</h3>
             <div class="meta">Company • 2023 • City</div>
@@ -916,7 +1005,7 @@
       <h2 id="vol-title">Volunteer Experience</h2>
       <div class="timeline" aria-label="Volunteer timeline">
         <div class="item" data-side="left">
-          <div class="dot" aria-hidden="true"><img alt="microsoft logo 2" src="images/microsoft.png"></div>
+          <div class="dot" aria-hidden="true"></div>
           <div class="card">
             <h3>VP Internal Events</h3>
             <div class="meta">School Club • 2025 • City</div>
@@ -930,7 +1019,7 @@
           </div>
         </div>
         <div class="item" data-side="right">
-          <div class="dot" aria-hidden="true"><img alt="microsoft logo 3" src="images/microsoft.png"></div>
+          <div class="dot" aria-hidden="true"></div>
           <div class="card">
             <h3>Volunteer Ambassador</h3>
             <div class="meta">School Club • 2024 • City</div>
@@ -1046,6 +1135,36 @@
       <div class="edu-subsection">
         <div class="edu-label">Certificates &amp; Courses</div>
         <div class="edu-grid">
+
+
+
+
+
+
+
+          <div class="card edu-card">
+            <div class="card-header">
+              <div class="card-logo">
+                <a href="https://www.google.com" target="_blank" rel="noopener">
+                  <img src="images/google.png" alt="Google logo">
+                </a>
+              </div>
+
+              <div class="card-head-text">
+                <h3>Data Analytics Professional Certificate</h3>
+                <div class="meta">Google • October 2025 • Online</div>
+              </div>
+            </div>
+
+            <ul>
+              <li>Launched career in data analytics with a professional certificate from Google.</li>
+              <li>Learned SQL, Tableau, and how to leverage AI for data analysis.</li>
+            </ul>
+          </div>
+
+
+
+          
           <!-- Certificate 1 -->
           <article class="card edu-card">
             <div class="edu-icon" aria-hidden="true">📄</div>
