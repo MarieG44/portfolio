@@ -723,6 +723,23 @@
       font-size: 0.95rem;
     }
 
+
+    /* --- Prevent Chrome/Edge autofill from changing the input background --- */
+    .contact-form input:-webkit-autofill,
+    .contact-form input:-webkit-autofill:hover,
+    .contact-form input:-webkit-autofill:focus,
+    .contact-form textarea:-webkit-autofill,
+    .contact-form textarea:-webkit-autofill:hover,
+    .contact-form textarea:-webkit-autofill:focus{
+      -webkit-text-fill-color: var(--text);                 /* keep text color */
+      -webkit-box-shadow: 0 0 0px 1000px
+        color-mix(in oklab, var(--panel) 70%, transparent) inset; /* force background */
+      box-shadow: 0 0 0px 1000px
+        color-mix(in oklab, var(--panel) 70%, transparent) inset;
+      caret-color: var(--text);
+      transition: background-color 9999s ease-out 0s;       /* prevents flash */
+    }
+
     .contact-form input,
     .contact-form textarea{
       width:100%;
