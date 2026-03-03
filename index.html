@@ -844,9 +844,14 @@
       }
     }
 
+    /* Exception: logo boxes INSIDE cards should have no visible ring */
     .card .card-logo{
-      border-color: color-mix(in oklab, var(--panel) 70%, var(--ring));
+      border-color: var(--panel);   /* same as card background */
     }
+
+    /*.card .card-logo{
+      border-color: color-mix(in oklab, var(--panel) 70%, var(--ring));
+    }*/
 
     
 
