@@ -803,10 +803,6 @@
 
 
 
-
-
-
-
     /* ===== Shared card header (timeline + education) ===== */
     
 
@@ -1008,6 +1004,32 @@
       .exp-md{
         grid-template-columns: 1fr;
       }
+    }
+
+    .proj-filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin: 6px 0 16px;
+    }
+
+    .proj-filter{
+      background:var(--panel);
+      border:1px solid var(--ring);
+      border-radius:12px;
+      padding:10px 16px;
+      color:var(--text);
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .proj-filter:hover{
+      background:color-mix(in oklab, var(--panel) 80%, transparent);
+    }
+
+    .proj-filter.is-active{
+      outline:2px solid color-mix(in oklab, var(--ring) 70%, transparent);
+      outline-offset:2px;
     }
 
 
@@ -1293,7 +1315,20 @@
     <section id="projects" class="section" aria-labelledby="proj-title">
       <h2 id="proj-title">Projects</h2>
       <div class="grid">
-        <article class="card project-card">
+
+
+        <div class="proj-filters" role="tablist" aria-label="Project categories">
+          <button class="proj-filter is-active" type="button" data-filter="all" aria-selected="true">All</button>
+          <button class="proj-filter" type="button" data-filter="data" aria-selected="false">Data</button>
+          <button class="proj-filter" type="button" data-filter="software" aria-selected="false">Software</button>
+          <button class="proj-filter" type="button" data-filter="research" aria-selected="false">Research</button>
+          <button class="proj-filter" type="button" data-filter="design" aria-selected="false">Design</button>
+        </div>
+
+
+
+        
+        <article class="card project-card" data-tags="data">
           <!-- CLICKABLE THUMBNAIL BUTTON -->
           <button class="proj-thumbnail-button"
                   type="button"
@@ -1319,7 +1354,7 @@
 
 
         
-        <article class="card project-card">
+        <article class="card project-card" data-tags="software">
           <img src="images/connect-four.png" alt="Mobile app mockup" />
           <h3>EmotiLog</h3>
           <div class="proj-meta">Hackathon • Jan 2025 • Vancouver, BC</div>
@@ -1327,7 +1362,7 @@
           <div class="badges"><span class="badge">Kotlin</span><span class="badge">TFLite</span></div>
         </article>
         
-        <article class="card project-card">
+        <article class="card project-card" data-tags="research">
           <img src="images/connect-four.png" alt="Notebook with code" />
           <h3>PoE2 Solver</h3>
           <div class="proj-meta">Coursework • 2025 • Remote</div>
@@ -1850,6 +1885,33 @@
           });
         });
       });
+
+      // ===== Projects filter (Data / Software / Research / Design) =====
+      const filterButtons = document.querySelectorAll('.proj-filter');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      function setProjectFilter(filter){
+        // buttons UI state
+        filterButtons.forEach(btn => {
+          const active = btn.dataset.filter === filter;
+          btn.classList.toggle('is-active', active);
+          btn.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        // show/hide cards
+        projectCards.forEach(card => {
+          const tags = (card.dataset.tags || '').split(/\s+/).filter(Boolean);
+          const show = (filter === 'all') || tags.includes(filter);
+          card.style.display = show ? '' : 'none';
+        });
+      }
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => setProjectFilter(btn.dataset.filter));
+      });
+
+      // default
+      setProjectFilter('all');
 
 
 
