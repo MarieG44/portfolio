@@ -532,42 +532,73 @@
       }
     }
 
-    /* “Play” cue: centered rounded button */
-    .proj-thumbnail-play{
+    /* ===== Project thumbnail Learn More button ===== */
+
+    .proj-thumbnail-button{
+      display:block;
+      width:100%;
+      padding:0;
+      margin:0;
+      border:none;
+      background:none;
+      text-decoration:none;
+      cursor:pointer;
+    }
+
+    .proj-thumbnail-button:hover{
+      text-decoration:none;
+    }
+
+    .proj-thumbnail-wrapper{
+      position:relative;
+      border-radius:10px;
+      overflow:hidden;
+    }
+
+    .proj-thumbnail-wrapper img{
+      display:block;
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+    }
+
+    /* Learn More button */
+    .proj-thumbnail-learn{
       position:absolute;
       top:50%;
       left:50%;
       transform:translate(-50%, -50%);
-      width:52px;
-      height:52px;
-      background:rgba(0,0,0,0.55);  /* button fill color */
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:12px;
-      transition:
-          background 150ms ease,
-          transform 150ms ease,
-          box-shadow 150ms ease;
+
+      background:#fff;
+      color:#000;
+
+      border:1px solid #000;
+      border-radius:10px;
+
+      padding:8px 16px;
+
+      font-size:1rem;
+      font-weight:600;
+
+      opacity:0;
+      transition:opacity 150ms ease;
     }
 
-    /* Hover effect on the play button */
+    /* Show button when thumbnail is hovered */
     @media (hover:hover){
-      .proj-thumbnail-play:hover{
-        background:rgba(0,0,0,0.8);              /* darker */
-        transform:translate(-50%, -50%) scale(1.06); /* slight pop */
-        box-shadow:0 4px 10px rgba(0,0,0,0.35);
+      .proj-thumbnail-wrapper:hover .proj-thumbnail-learn{
+        opacity:1;
       }
     }
 
-    .proj-thumbnail-play::before{
-      content:"";
-      width:0;
-      height:0;
-      border-left:18px solid #ffffff;     /* triangle color */
-      border-top:11px solid transparent;
-      border-bottom:11px solid transparent;
-      margin-left:3px;                    /* optical centering */
+    @media (hover:hover){
+      .proj-thumbnail-wrapper:hover img{
+        filter:brightness(0.85);
+      }
+
+      .proj-thumbnail-wrapper:hover .proj-thumbnail-learn{
+        opacity:1;
+      }
     }
 
     /* ===== Video overlay popup ===== */
