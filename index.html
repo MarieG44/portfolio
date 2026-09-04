@@ -495,9 +495,38 @@
 
 
     /* ===== Grid (Projects) ===== */
-    .grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:16px}
-    /*.card img{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:10px; margin-bottom:10px}*/
-    .project-card img{width:100%; aspect-ratio:16/9; object-fit:cover; border-radius:10px; margin-bottom:10px}
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fill, minmax(260px, 1fr));
+      gap:16px;
+    }
+
+    .project-card img{
+      width:100%;
+      aspect-ratio:16/9;
+      object-fit:cover;
+      border-radius:10px;
+      margin-bottom:4px;
+    }
+
+    /* Project card text spacing */
+
+    .project-card h3{
+      margin:4px 0 6px 0;
+    }
+
+    .project-card .proj-meta{
+      margin:0 0 8px 0;
+    }
+
+    .project-card p{
+      margin:0 0 10px 0;
+    }
+
+    .project-card .badges{
+      margin-top:0;
+      gap:8px;
+    }
 
 
     /* ===== Project video thumbnails (test 2) ===== */
